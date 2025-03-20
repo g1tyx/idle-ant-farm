@@ -1,1 +1,29 @@
-{"name":"Idle Ant Farm","short_name":"Idle Ant Farm","start_url":"/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/","description":"An idle game about managing an ant farm","theme_color":"#ffffff","icons":[{"src":"pwa-192x192.png","sizes":"192x192","type":"image/png"},{"src":"pwa-512x512.png","sizes":"512x512","type":"image/png"},{"src":"pwa-512x512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}
+{
+  "name": "Idle Ant Farm",
+  "short_name": "Idle Ant Farm",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "scope": "./",
+  "description": "An idle game about managing an ant farm",
+  "theme_color": "#ffffff",
+  "icons": [
+      {
+          "src": "pwa-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "pwa-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      },
+      {
+          "src": "pwa-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+      }
+  ]
+}
