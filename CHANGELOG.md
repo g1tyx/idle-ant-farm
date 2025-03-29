@@ -5,6 +5,67 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2025-03-29
+
+### Changed
+- Significantly improved code organization and maintainability by breaking the MegaAntTab component into smaller, focused components:
+  - Extracted AscensionConfirmationModal to handle ascension confirmations
+  - Created DigestiveSystems component to manage both crop and true stomach systems
+  - Implemented FeedingInterface component to handle food and pheromone feeding controls
+  - Added DigestionLogs component to display digestion history
+  - Created MobileUpgradeTabView for the mobile tab interface
+  - Added DesktopUpgradeLayout for side-by-side upgrade layout on larger screens
+  - Extracted TutorialSection to manage the help/guide content
+  - Created MegaAntHeader for the page header and ascension button
+  - Implemented MegaAntImage to handle the ant image with animations
+  - Added MegaAntStats to display all ant statistics
+  - Created ExperienceProgressBars for XP visualization
+  - Added LevelBadges to show level information in a consistent format
+- Enhanced the feeding interface by placing each feeding control directly under its respective digestive system for better usability
+- Improved mobile experience with more logical control placement
+
+### Fixed
+- Improved user experience by ensuring related controls are visually connected to their systems
+- Enhanced code maintainability by following the Single Responsibility Principle
+- Reduced the size of the main component file by properly modularizing functionality
+
+## [0.10.0] - 2025-03-28
+
+### Added
+- Implemented comprehensive Mega Ant evolution system with dual stomach mechanics:
+  - Crop system for processing food into Mega Ant experience
+  - True Stomach system for processing pheromone essence into Colony experience
+  - Dynamic digestion system with real-time processing and visual feedback
+  - Detailed digestion logs showing resource processing and experience gains
+- Added three categories of Mega Ant upgrades:
+  - Digestive Capacity: Increases storage capacity for both stomachs
+  - Digestive Speed: Enhances processing rate for both food and essence
+  - Digestive Efficiency: Improves experience gain from both systems
+- Implemented Colony upgrade system affecting global gameplay:
+  - Evolution Synergy: Increases EP gain with evolution count scaling
+  - Pheromone Enhancement: Boosts pheromone essence gains
+  - Colony Coordination: Enhances global production rates
+- Added Ascension mechanic for Mega Ant:
+  - Preserve upgrades while resetting progress
+  - Gain permanent multipliers for faster subsequent runs
+  - Clear progression path with recommended ascension timing
+- Started implementing visual improvements:
+  - Added support for bug images in the Adventure mode
+  - Enhanced BugCard component with image display capabilities
+  - Prepared groundwork for item image implementation
+  - Improved UI feedback for various game states
+
+### Changed
+- Enhanced Adventure mode UI with better visual representation of bugs
+- Improved BugCard component with more intuitive layout and visual feedback
+- Updated combat risk indicators with clearer visual cues
+- Enhanced quest target visualization in bug cards
+
+### Fixed
+- Improved image loading error handling in BugCard component
+- Enhanced type safety throughout the Mega Ant implementation
+- Fixed potential issues with decimal number handling in experience calculations
+
 ## [0.9.9] - 2025-03-23
 
 ### Added
