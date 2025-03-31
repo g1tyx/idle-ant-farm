@@ -5,6 +5,179 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.4] - 2025-03-30
+
+### Changed
+- Refined offline progress calculation:
+  - Uses precise tick-by-tick simulation for offline times less than 1 hour for maximum accuracy.
+  - Employs optimized batch processing for offline times exceeding 1 hour to maintain performance.
+- Updated Colony Rush feature to use the precise tick-by-tick simulation for its duration.
+- Added a visual overlay animation during Colony Rush processing to provide feedback and prevent the appearance of a frozen UI.
+
+### Fixed
+- Corrected Mega Ant offline progress calculation to accurately account for stomach emptying time, ensuring precise experience gain during offline periods.
+- Improved performance of the Mega Ant offline calculation by processing decay in a single, accurate batch.
+
+## [0.11.3] - 2025-03-30
+
+### Improved
+- Enhanced inventory page layout for desktop users:
+  - Now displays equipment and inventory sections side-by-side on larger screens
+  - Maintains tab-based navigation on mobile for better space utilization
+  - Added section headers with item counts for better visibility
+  - Improved responsive design that adapts based on screen size
+  - Fixed navigation tabs now only appear on mobile devices
+
+## [0.11.2] - 2025-03-30
+
+### Improved
+- Optimized offline calculation performance in Adventure mode:
+  - Eliminated unnecessary log generation during batch processing
+  - Implemented intelligent combat simulation that calculates outcomes mathematically instead of iteratively
+  - Added deterministic calculation for combat scenarios based on damage, health, and defense values
+  - Reduced CPU usage during offline progress calculation by optimizing combat resolution
+  - Improved processing speed for long offline periods with many combat interactions
+
+## [0.11.1] - 2025-03-30
+
+### Changed
+- Improved navigation usability across the application:
+  - Redesigned tab navigation for Inventory page to match Adventure page style
+  - Moved tabs to a fixed position above the main navigation bar for easier access
+  - Created reusable FixedTabNavigation component for consistent UI across pages
+  - Enhanced mobile experience with icon-only tabs on small screens and full labels on larger screens
+  - Added badge counters for inventory items and available quests
+  - Improved visual feedback with active tab indicators and hover states
+  - Added responsive positioning for badges that adapts to screen size
+
+### Fixed
+- Fixed issue where Inventory tabs were difficult to access on mobile devices
+- Fixed inconsistent tab navigation patterns between Adventure and Inventory pages
+- Fixed tabs being pushed off screen on small mobile devices by using icon-only display with tooltips
+
+## [0.11.0] - 2025-03-29
+
+### Added
+- Completely overhauled the Ant Simulation feature with realistic ant behaviors:
+  - Implemented detailed ant anatomy with segmented bodies, articulated legs, and antennae
+  - Added animated walking motion with synchronized leg movements for realistic locomotion
+  - Developed natural foraging behavior with ants seeking food and returning to the nest
+  - Created realistic food sources that appear as detailed leaf shapes with veins and textures
+  - Added a procedurally generated ant nest with entrance hole and radiating trails
+- Enhanced simulation responsiveness and performance:
+  - Dynamically scales the number of rendered ants based on colony size (1:1 representation up to 100 ants)
+  - Uses logarithmic scaling for larger colonies while maintaining performance
+  - Automatically adjusts food source quantity based on window size
+  - Hard capped at 150 ants maximum to ensure smooth performance
+- Made the simulation fullscreen with floating UI panel for an immersive experience
+- Added toggle-able settings controls for adjusting simulation speed and ant size
+- Added debug mode features for development and testing
+- Added prominent button in the header to improve feature discoverability
+
+### Changed
+- Ants now carry broken pieces of leaves instead of generic food items
+- Improved ant movement patterns to better mimic real ant behavior, including:
+  - Natural wandering with gradual direction changes
+  - Occasional pauses to "investigate" surroundings
+  - Organized return to the nest when carrying food
+- Enhanced visual design with proper background image and responsive canvas
+- Redesigned nest appearance to look like a real ant mound with entrance hole
+- Used more realistic color schemes for ants, food, and nest elements
+- Improved special "golden" ants to represent colony leaders (every 20th ant)
+
+### Fixed
+- Fixed issues with food distribution to ensure food sources never spawn on top of the nest
+- Fixed ant movement direction sometimes being inconsistent with their body orientation
+- Fixed performance issues by using pre-computed elements for food spots and nest details
+- Eliminated "trailing" effect that caused motion blur in previous versions
+
+### Fun Note for v1 Players
+- Remember when ants in v1 were just static dots that moved randomly? Now they have legs that actually move! And they carry realistic leaf fragments instead of mysterious blobs.
+
+## [0.10.8] - 2025-03-29
+
+### Changed
+- Updated EquipmentSection and InventorySection components to use inline Tailwind styles
+- Maintained the same visual appearance and pixel-art style while improving code maintainability
+- Enhanced the styling structure with direct class application for better Tailwind compatibility
+- Preserved all visual effects, animations, and responsiveness during the refactoring
+- Added a background to both the main layout and offline calculation modal
+
+## [0.10.7] - 2025-03-29
+
+### Added
+- Added "Mega Ant Auto Feed" prestige upgrade, unlocking automatic feeding capability
+- Implemented the upgrade as an automation category prestige upgrade for 50M Evolution Points
+- Auto Feed feature is unlocked after purchasing the Mega Ant feature
+- Enhanced UI with intuitive locked/unlocked states for the Auto Feed controls
+- Added informative tooltips explaining how to unlock the feature when locked
+- Mobile-friendly interaction with improved tooltip display
+- Auto feeding only activates when digestive systems are completely empty for better balance
+- Visual indicators showing auto feeding status and time remaining until next attempt
+
+## [0.10.6] - 2025-03-29
+
+### Added
+- Added auto feed functionality to Mega Ant digestive systems
+- Implemented toggle controls for both food and pheromone essence auto feeding
+- Each system feeds 1% of available resources every 10 ticks when enabled
+- Balanced auto feeding to only trigger when stomachs are completely empty
+- Added clear UI indicators for the empty-stomach feeding requirement
+- Added visual toggle switches in the Digestive Systems interface
+- Added countdown display showing ticks remaining until next auto feed occurs
+- Optimized auto feed process to work efficiently with the existing decay system
+- Added persistent state management for auto feed preferences
+
+## [0.10.5] - 2025-03-29
+
+### Added
+- Added max buy buttons to all shop items in the Pheromone Shop
+- Implemented efficient mathematical calculation for maximum affordable levels
+- Added detailed tooltips showing how many levels will be purchased and total cost
+- Implemented visual feedback showing how many levels were purchased
+- Ensured consistent button sizing and styling for better UI experience
+
+## [0.10.4] - 2025-03-29
+
+### Added
+- Added "Auto Quest Advance" feature to Adventure mode that automatically targets the best bug for your active quest
+- Implemented the feature as an Evolution upgrade that can be purchased in the Prestige tab
+- Added smart targeting system that automatically prioritizes incomplete quest goals
+- Auto Quest Advance progressively switches targets as quest goals are completed
+- Enhanced the combat system to efficiently target one-hit kills when available for quest targets
+- Improved PlayerStatsCard UI with clear locked/unlocked state indicators
+- Added informative tooltip explaining how to unlock the Auto Quest Advance feature
+
+## [0.10.3] - 2025-03-29
+
+### Fixed
+- Fixed critical bug in item locking system where equipped items would lose their lock status
+- Completely redesigned the item locking system to keep lock status synchronized between inventory and equipment slots
+- Added proper migration for existing saves to ensure previously equipped items have correct lock properties
+- Fixed bug where identical items in both inventory and equipment could have inconsistent lock states
+- Added global item locking control that affects all identical items regardless of location (equipped or in inventory)
+- Enhanced salvage system to respect the unified lock state
+- Improved error handling for legacy save files that were missing lock status properties
+
+## [0.10.2] - 2025-03-29
+
+### Added
+- Added 30+ new quests targeting a wide variety of bugs for all game stages:
+  - New mid-tier quests for ladybugs, houseflies, mosquitoes, cockroaches, and more
+  - Higher level quests for stag beetle swarms, mutant flies, and other challenging enemies
+  - Endgame quests featuring apocalyptic termites and radioactive spiders
+  - Ultimate quests against powerful ant hierarchy enemies (legion commanders, tacticians, etc.)
+  - Multi-bug challenge quests requiring defeating various bug types simultaneously
+- Reduced quest completion requirement for ascension from 80% to 65%, making it easier to progress
+
+### Improved
+- Enhanced quest UI to show detailed information for quests with multiple goals:
+  - Quest cards now display each individual goal with clear numbering
+  - Completed quest cards show checkmarks for each accomplished goal
+  - Goals now show proper descriptions based on their type (kill bugs, collect food, etc.)
+  - Quest headers now display the specific number of goals instead of just "Multiple Goals"
+  - Improved mobile experience with better space utilization in quest cards
+
 ## [0.10.1] - 2025-03-29
 
 ### Changed
