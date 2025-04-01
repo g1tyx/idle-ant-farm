@@ -5,6 +5,97 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2025-03-31
+
+### Added
+- Added quest filtering based on player capability:
+  - New "Show Too Strong Bug Quests" toggle in the quest filters panel
+  - Filter hides quests targeting bugs the player cannot defeat
+  - Intelligent combat assessment evaluates if the player can defeat each bug
+  - Special quests that don't require specific targets remain visible regardless of filter
+  - Persistent filter preference saved between game sessions
+  - Enhanced filtering system that works alongside existing quest type and reward filters
+  - Active filter count indicator updates to include the new filter
+
+### Improved
+- Enhanced quest filter system with more intuitive UI controls
+- Better integration with adventure combat assessment for consistent evaluation of player strength
+- Optimized quest goals filtering to properly handle multi-goal quests
+
+## [0.11.9] - 2025-03-31
+
+### Changed
+- Improved consistency in item display across the application:
+  - Updated ItemFilterModal to use centralized rarity color utilities from itemStore
+  - Standardized item background colors across all item-related components
+  - Removed custom color implementations in favor of reusable utility functions
+  - Enhanced visual consistency between inventory items and filtered items
+  - Better color consistency for item rarities across all modals
+  - Improved code maintainability by centralizing color definitions
+
+## [0.11.8] - 2025-03-31
+
+### Added
+- Added Auto Specialization feature for all generator types:
+  - New prestige upgrades that enable automatic specialization upgrading
+  - Each generator type has its own auto-upgrade prestige upgrade with scaling costs
+  - Auto-upgrading purchases the cheapest available upgrade automatically when points are available
+  - Added toggle controls in each generator card for enabling/disabling auto-upgrading
+  - Visual indicators show when auto-upgrade is active and upgrades are available
+  - Added tooltips explaining the auto-upgrade functionality
+  - Prestige costs scale exponentially from basic generators (150 EP) to advanced generators (150M EP)
+
+### Improved
+- Enhanced generator card UI with more compact automation controls
+- Added visual feedback when auto-upgrades are actively working
+- Added always-visible tick counter showing exactly when the next auto-upgrade check will occur (mobile-friendly)
+- Optimized auto-upgrade processing to run at a reasonable frequency to prevent excessive updates (every 10 ticks)
+
+## [0.11.7] - 2025-03-31
+
+### Added
+- Added comprehensive Quest Queue system:
+  - New queue button in the Quest interface showing number of queued quests
+  - Ability to add quests to a queue that automatically start when the current quest completes
+  - Drag-and-drop interface for reordering quests in the queue with both mouse and touch support
+  - Auto-start toggle to enable/disable automatic progression through the queue
+  - Quest queue modal with detailed information about upcoming quests
+  - Toast notifications when quests automatically start from the queue
+  - Persistent queue state that saves between game sessions
+  - Automatic quest queue processing during regular game ticks
+
+### Improved
+- Enhanced quest management workflow with smoother transitions between quests
+- Added ability to automatically start the next quest when abandoning the current one
+- Better mobile support for quest queue management with touch-friendly controls
+- Improved user experience with clear visual indicators for queued quests
+
+## [0.11.6] - 2025-03-31
+
+### Improved
+- Completely overhauled the offline progress calculation system:
+  - Enhanced Mega Ant offline processing to include auto-feeding functionality for both food and pheromone
+  - Implemented optimized batch calculation for Adventure mode combat with deterministic outcome prediction
+  - Added support for quest progress tracking during offline periods
+  - Improved tick system to process multiple ticks at once for better performance
+  - Enhanced tick-based distribution of rewards from Adventure mode
+  - Reduced memory usage by eliminating unnecessary log generation during batch processing
+  - Implemented more accurate health tracking between game sessions
+  - Properly calculated and applied double kill bonuses in offline Adventure rewards
+  - Made offline calculations more consistent with online gameplay behavior
+
+### Fixed
+- Fixed inconsistency between online and offline auto-feeding for Mega Ant
+- Fixed quest progress not updating correctly during offline calculations
+- Fixed memory leaks in the offline processing system
+- Improved error handling and state recovery for interrupted offline calculations
+
+## [0.11.5] - 2025-03-31
+
+### Fixed
+- Fixed issue where Mega Ant ascension didn't reset spent levels counter properly, preventing players from spending levels after ascending
+- Corrected the resetProgressForAscension function to properly reset spentLevels to 0 when ascending
+
 ## [0.11.4] - 2025-03-30
 
 ### Changed

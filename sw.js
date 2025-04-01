@@ -16,15 +16,15 @@ if (!self.define) {
       })
   );
   self.define = (i, o) => {
-    const r =
+    const c =
       e ||
       ("document" in self ? document.currentScript.src : "") ||
       location.href;
-    if (s[r]) return;
-    let c = {};
-    const t = (e) => n(e, r),
-      a = { module: { uri: r }, exports: c, require: t };
-    s[r] = Promise.all(i.map((e) => a[e] || t(e))).then((e) => (o(...e), c));
+    if (s[c]) return;
+    let r = {};
+    const t = (e) => n(e, c),
+      l = { module: { uri: c }, exports: r, require: t };
+    s[c] = Promise.all(i.map((e) => l[e] || t(e))).then((e) => (o(...e), r));
   };
 }
 define(["./workbox-b833909e"], function (e) {
@@ -33,10 +33,10 @@ define(["./workbox-b833909e"], function (e) {
     e.clientsClaim(),
     e.precacheAndRoute(
       [
-        { url: "assets/index-CyRhWWj0.css", revision: null },
-        { url: "assets/index-oCbxJhH0.js", revision: null },
+        { url: "assets/index-BJnNUzPR.js", revision: null },
+        { url: "assets/index-C9ZU4V5S.css", revision: null },
         { url: "assets/workbox-window.prod.es5-B9K5rw8f.js", revision: null },
-        { url: "index.html", revision: "395a43658d4dd911538e1a5dae3c6fca" },
+        { url: "index.html", revision: "c357031bb76cbecd39a6016b2ac7c51e" },
         {
           url: "apple-touch-icon.png",
           revision: "26a8ca21bb819327ec00f0a4e81d537a",
