@@ -2136,6 +2136,7 @@ var cnRegReplace = new Map([
     [/^\+([\d\.]+) base colony production$/, '基础蚁群生产 \+$1'],
     [/^([\d\.]+)d ([\d\.]+)h ([\d\.]+)m$/, '$1天 $2小时 $3分'],
     [/^([\d\.]+)e([\d\.,]+) elves$/, '$1e$2 精灵'],
+    [/^\+([\d\.,]+) base megacolony production$/, '\+$1 基础巨型蚁群生产'],
     [/^\+([\d\.,]+) base food production$/, '\+$1 基础食物生产'],
     [/^\+([\d\.,]+) base worker production$/, '\+$1 基础工蚁生产'],
     [/^Adapt \(([\d\.,]+) pts\)$/, '改造（$1 点数）'],
