@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.1] - 2025-04-02
+
+### Added
+- New Exponential EP prestige upgrade:
+  - Powerful upgrade that doubles EP production per level (2x, 4x, 8x)
+  - Maximum of 3 levels with exponentially increasing costs
+  - Balanced with high base cost of 10 million EP
+  - Applies multiplicatively with other EP bonuses
+  - Visual indicator with sparkles icon
+
+## [0.13.0] - 2025-04-02
+
+### Added
+- New Aphid Farm feature:
+  - Farm aphids to produce honeydew currency
+  - Purchase and upgrade fields to increase production
+  - Multiple aphid types with unique yields and growth times
+  - Auto-farming system for passive honeydew generation
+  - Aphid-specific upgrades to enhance performance
+  - Plant All and Harvest All capabilities
+  - Specialized UI with responsive design
+
+- New item leveling system:
+  - OSRS-inspired XP-based progression replacing merge system
+  - Different XP requirements based on item rarity
+  - Stats scale with level (20% per level for 1-10, 10% after)
+  - Production modifiers scale with level (10% per level for 1-10, 5% after)
+  - Special modifiers scale with level progression
+  - Detailed XP tracking and level progress visualization
+
+## [0.12.1] - 2025-04-01
+
+### Improved
+- Enhanced Quest Queue for mobile devices:
+  - Added up/down arrow buttons for reordering quests on mobile
+  - Disabled drag and drop on mobile for better touch experience
+  - Used responsive design to automatically switch between desktop and mobile interfaces
+  - Made quest reordering more intuitive on touchscreen devices
+  - Used VueUse's media query composable for device detection
+
 ## [0.12.0] - 2025-03-31
 
 ### Added
