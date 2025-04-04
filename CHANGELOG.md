@@ -5,6 +5,70 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2025-04-03
+
+### Added
+- Added "Precise Hibernation Calculation" setting for more accurate offline progress:
+  - When enabled, processes all offline ticks individually instead of using batch processing
+  - Provides maximum accuracy for offline progress calculations at the cost of longer processing time
+  - Works alongside the existing 24-hour maximum offline period limitation
+  - Added user-friendly toggle in settings with clear description of the feature's behavior
+- Added customizable batch size slider for offline progress calculations:
+  - Players can adjust how many ticks are processed at once during offline calculations
+  - Allows fine-tuning the balance between accuracy and performance
+  - Smaller batch sizes (10-100) provide more accurate results but take longer
+  - Larger batch sizes (100-1000) calculate faster but with slightly less precision
+  - Only visible when "Precise Hibernation Calculation" is disabled
+
+## [0.13.4] - 2025-04-03
+
+### Fixed
+- Adventure will priorotize auto quests over auto one hit kill
+- Adventure quest progress didn't work with the Colony Rush feature
+- Item leveling using honeydew, can now actually use MAX honeydew
+- Added text to the Aphid Farm Fields, to give users a better UX
+- Improved percentage formatting throughout the Aphid Farm:
+  - Used formatPercentage from decimalUtils for consistent number formatting
+  - Fixed percentage displays for all aphid type special abilities
+  - Properly formatted Bubbleback efficiency field level boost
+  - Enhanced Fungal Fields boost percentage display with field count
+  - Improved Pheromelion Empowerment boost display with correct formatting
+  - Added helper methods to ensure consistent percentage formatting
+
+### Changed
+- Improved prestige cost discount upgrades to provide exponential benefits:
+  - Modified all cost discount upgrades to use power-based scaling (X^level) instead of linear (X*level)
+  - Changed from additive to multiplicative discount effect for stronger progression
+  - Updated upgrade descriptions to reflect the exponential nature of the effects
+  - Significantly increased the impact of higher level upgrades
+
+## [0.13.3] - 2025-04-03
+
+### Added
+- Enhanced Aphid Farm with expected yield display for growing aphids:
+  - Added real-time preview of honeydew yield for growing aphids
+  - Implemented yield calculation that shows the final reward including all bonuses
+  - Integrated Golden Aura effect from adjacent fields into the expected yield
+  - Improved user experience by showing potential rewards during growth phase
+
+### Fixed
+- Improved Aphid Farm field layout consistency with height styling
+
+## [0.13.2] - 2025-04-02
+
+### Added
+- New Global Upgrades feature for Aphid Farm:
+  - Added powerful honeydew-based upgrades that enhance various aspects of production
+  - Four upgrade categories: Evolution Points, Pheromone, Generators, and Global
+  - Implemented tiered upgrade system with exponentially increasing costs and effects
+  - EP upgrades provide multiplicative bonuses to evolution point production (up to 5 levels)
+  - Pheromone upgrades boost essence production with scaling multipliers (up to 4 levels)
+  - Generator upgrades enhance all generator production rates (up to 3 levels)
+  - Global upgrades apply to all production types simultaneously (up to 2 levels)
+  - Added intuitive tab-based interface with category descriptions
+  - Visual progress bars showing upgrade level progression
+  - Mobile-friendly design with appropriate touch targets
+
 ## [0.13.1] - 2025-04-02
 
 ### Added
