@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.16.0] - 2025-04-06
+
+### Changed
+- Improved navigation layout with consistent tab styling for better readability
+- Enhanced visual consistency across all navigation elements
+- Improved contrast and visibility of navigation items in both light and dark modes
+- Fixed hover states for all navigation items for better interactive feedback
+- Applied unified color scheme for tab backgrounds to create a cohesive look
+
+## [0.15.0] - 2025-04-06
+
+### Added
+- New 'Generator'
+
+### Changed
+- Quests are now locked behind an evolution upgade, in order to balance out progression at the start.
+
+## [0.14.1] - 2025-04-05
+
+### Added
+- Enhanced generator specialization presets with advanced features:
+  - Added support for adding the same upgrade multiple times to reach its max level
+  - Implemented up/down arrow buttons for reordering presets on mobile devices
+  - Added count indicators showing current level and max level for repeated upgrades
+  - Improved preset UI with clearer visual feedback when upgrades reach their max level
+  - Modified auto-upgrade logic to intelligently handle presets with duplicate upgrades
+  - Added automatic upgrade reordering in presets when an upgrade is purchased
+
+### Improved
+- Improved preset management experience:
+  - Better mobile support with touch-friendly controls
+  - Enhanced UI feedback for upgrade selections with clearer status indicators
+  - More intuitive controls for adding multiple instances of the same upgrade
+  - Smarter auto-upgrade system that follows user-defined preset order exactly
+
 ## [0.14.0] - 2025-04-03
 
 ### Added
@@ -34,13 +69,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enhanced Fungal Fields boost percentage display with field count
   - Improved Pheromelion Empowerment boost display with correct formatting
   - Added helper methods to ensure consistent percentage formatting
-
-### Changed
-- Improved prestige cost discount upgrades to provide exponential benefits:
-  - Modified all cost discount upgrades to use power-based scaling (X^level) instead of linear (X*level)
-  - Changed from additive to multiplicative discount effect for stronger progression
-  - Updated upgrade descriptions to reflect the exponential nature of the effects
-  - Significantly increased the impact of higher level upgrades
 
 ## [0.13.3] - 2025-04-03
 
