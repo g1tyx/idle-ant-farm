@@ -5,6 +5,276 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.26.0] - 2025-04-10
+
+### Added
+- Added generator icons on bugs in the Adventure mode that have active synergy upgrades, allowing players to easily identify which bugs to kill for specific generator bonuses
+- Visual indicators showing synergy percentage boost and target generator for each bug with active synergy
+
+### Changed
+- Rebalanced all Pheromone Shop items for better progression:
+  - Adjusted modifier values and scaling for better balance across all game stages
+  - Fine-tuned cost scaling to provide smoother progression
+  - Modified unlock requirements to create a more logical upgrade path
+  - Rebalanced multipliers to prevent overpowered combinations in late game
+  - Enhanced high-level modifiers to make them more rewarding
+- Added baseCost sort option to the Pheromone Shop for better item comparison
+- Updated the Pheromone Shop UI with improved sorting controls similar to the Quest interface
+
+## [0.25.1] - 2025-04-10
+
+### Fixed
+- Fixed issue where the Combat tab in Adventure mode was always showing as active even when other tabs were selected
+- Improved tab highlighting logic in the sidebar navigation to correctly reflect the active Adventure tab
+- Enhanced mobile panel UI with corrected active state indicators for better user experience
+- Fixed desktop sidebar highlighting to properly show the current tab state based on URL parameters
+
+## [0.25.0] - 2025-04-10
+
+### Added
+- Enhanced quest reward calculation system to provide more balanced rewards
+- Added dynamic tier-based scaling for quest rewards to better match player progression
+- Implemented detailed reward preview in quest cards showing exact values with tier multipliers applied
+
+### Changed
+- Improved the `getRewardValue` function to handle different reward types more consistently
+- Standardized reward calculation across all quest types (FOOD, PHEROMONE, EP, ITEM, MULTIPLIER)
+- Enhanced quest sorting options to provide better organization of available and completed quests
+
+### Fixed
+- Fixed inconsistencies in quest reward calculations for higher tier quests
+- Corrected reward scaling for quests with tier values to ensure proper progression
+
+## [0.24.1] - 2025-04-09
+
+### Added
+- Added bug kill synergy upgrades for each generator type
+- Each generator now has a synergy upgrade that boosts its production based on specific bug kills
+- Implemented a scaling percentage system with bonuses ranging from 0.1% to 12% per 1000 kills
+- Added kill count display to bug cards for easier tracking of progress toward synergy bonuses
+
+### Changed
+- Standardized all bug kill thresholds to 1000 kills for consistent progression
+- Enhanced BugCard.vue to show kill counts in both compact and regular views
+- Modified synergyUpgrades.ts to use a faster cost multiplier (4x) for bug kill synergies
+
+## [0.24.0] - 2025-04-09
+
+### Added
+- Added generator-specific synergy upgrades for all generator types
+- Each generator type now has a synergy upgrade that boosts its production based on manual purchases
+- Implemented a scaling bonus system with higher tier generators receiving larger percentage boosts
+- Added detailed descriptions to clearly indicate which generator each synergy affects
+
+### Changed
+- Refactored synergy upgrade system for improved maintainability and extensibility
+- Added generic `synergyConfig` property to prestige upgrades for consistent handling
+- Updated multiplier store to dynamically process all synergy upgrades
+- Improved efficiency by centralizing synergy calculations in a single function
+
+## [0.23.0] - 2025-04-09
+
+### Changed
+- Refactored Upgrades page layout to use a collapsible sidebar for categories and filters, improving desktop and mobile UX.
+- Adjusted sidebar behavior: scrolls with content on desktop, fixed overlay on mobile.
+- Relocated mobile filter toggle button below the Evolution Status section.
+- Modified Upgrade Search Bar to stack vertically within the sidebar.
+
+## [0.22.4] - 2025-04-09
+
+### Added
+- Added a new cross-feature upgrade in the Aphid Farm: "Bug Honeydew Drops".
+- This upgrade, costing 1k honeydew, allows defeated bugs in Adventure Mode to drop honeydew.
+- The amount of honeydew dropped scales based on the bug's index, similar to food rewards.
+
+### Changed
+- Added a "Cross-Feature" tab to the Aphid Farm page to house the new upgrade.
+- Modified `adventureStore` to grant honeydew on bug defeat if the upgrade is purchased.
+- Updated offline calculations to include honeydew gained from bug kills.
+
+## [0.22.3] - 2025-04-09
+
+### Changed
+- Rebalanced quest requirements in `src/data/quests.ts`:
+  - Significantly reduced the required kill counts for high-tier `KILL_BUGS` quests (e.g., `exterminator_adept` down to 500 from 1k, `extreme_bug_hunter` down to 50k from 1M).
+  - Massively increased the required amounts for `COLLECT_FOOD` quests to better scale with late-game production (e.g., `collect_food_basic` up to 1e10 from 50k, `cosmic_food_harvester` up to 1e1000 from 1e20).
+  - Adjusted food requirements in mixed quests (e.g., `resource_champion`, `supreme_resource_master`) to match new scaling.
+  - Increased food reward for `ant_training_master_graduate` quest to 1e50.
+
+## [0.22.2] - 2025-04-08
+
+### Changed
+- Rebalanced boss unlock requirements in `bosses.ts` to ensure a more logical difficulty progression.
+- Corrected instances where required bugs for unlocking a boss were stronger than the boss itself.
+- Adjusted some late-game boss requirements to use more appropriate, stronger bugs.
+- Updated unlock descriptions to match the changed bug requirements.
+- Fixed the first boss (`boss_training_dummy`) unlock description and requirements to reflect it being available from the start.
+
+## [0.22.1] - 2025-04-08
+
+### Changed
+- Boss food rewards are now calculated dynamically based on player's food production per second, similar to adventure bug rewards.
+- Removed static food reward values from boss definitions (`bosses.ts`).
+- Updated `BossCard.vue` to display the potential dynamic food reward based on the new calculation.
+
+## [0.22.0] - 2025-04-08
+
+### Added
+- Added "Game Finished" screen that appears after defeating the final boss (`boss_omega_ant`).
+- The screen informs players that "Endless Mode" is unlocked, allowing continued play after the main content.
+- The screen is shown automatically only once upon first defeating the final boss.
+- Added a button in the Settings page to view the Game Finished screen again.
+- Added a debug feature to make the Settings button always visible when debug mode is enabled.
+
+### Changed
+- Updated `bossStore` to track if the game finished screen has been shown and trigger its display.
+- Updated `gameStore` to manage the visibility state of the game finished screen.
+- Updated `App.vue` to conditionally render the game finished screen overlay.
+- Updated `SettingsPage.vue` to include the conditional button for viewing the screen.
+
+## [0.21.0] - 2025-04-08
+
+### Added
+- Added missing boss drop item 'emperor_toxin' to `items.ts`.
+- Added boss images to `BossCard.vue` for display on the `BossPage.vue`.
+- Finalized all item images.
+
+### Changed
+- Significantly decreased item drop rates for most bosses in `bosses.ts` to increase the sense of accomplishment for farming.
+- Increased boss image size in `BossWiki.vue`.
+- Updated number formatting in `BossCard.vue`, `BossCombatCard.vue`, and `PlayerStatsBossCard.vue` to use `formatDecimal` with appropriate precision (e.g., `0` for stats, dynamic for percentages via `formatPercentage`) to prevent rounding issues with small or very large numbers.
+
+### Fixed
+- Corrected TypeScript error in `BossWiki.vue` related to potentially null image source.
+- Ensured boss drop rate percentages in `BossCard.vue` display correctly for very small values using `formatPercentage`.
+
+## [0.20.1] - 2025-04-07
+
+### Fixed
+- Improved percentage formatting throughout the Aphid Farm upgrade descriptions:
+  - Used `formatPercentage` from `decimalUtils` for consistent number formatting.
+  - Fixed long decimal tails appearing in upgrade effect percentages.
+
+## [0.20.0] - 2025-04-07
+
+### Added
+- Added 11 new endgame bosses (Chrono-Beetle to Omega Ant) with massively scaled stats and unique Divine/Mythic item rewards.
+- Implemented Repeatable Boss Fight feature:
+  - Toggle button on defeated boss cards to set a boss for automatic repeats after cooldown.
+  - Automatic restart logic triggered on game ticks when conditions are met (cooldown finished, no active fight).
+  - Persistent state saving for the selected repeatable boss.
+
+### Changed
+- Boss cards now always display detailed Unlock Requirements, including progress indicators (e.g., kills, food/sec).
+- Boss combat logs now persist after the fight ends, showing final rewards until a new fight starts.
+
+### Fixed
+- Prevented players from starting boss fights before meeting all unlock requirements (both store logic and UI interaction).
+- Corrected target bug ID mismatch for the Training Dummy boss unlock requirement ('safe' instead of 'basic').
+- Fixed logic for automatically restarting repeatable boss fights to trigger correctly after cooldown and when requirements are met.
+
+## [0.19.0] - 2025-04-07
+
+### Added
+- New Boss Challenges feature:
+  - Sequential boss fights with unique mechanics and rewards
+  - Special item drops from defeating bosses
+  - Boss cooldown system to prevent farming
+  - Interactive combat log and real-time health bars
+  - Unlockable through the new "Boss Challenges" research upgrade
+  - Integration with existing Adventure combat stats
+  - Unique rewards including food, essence, and special items
+  - Progression system with increasingly difficult bosses
+
+## [0.18.1] - 2025-04-07
+
+### Added
+- Colony developer feeding mechanism (a.k.a. "Buy Me a Coffee"):
+  - Discovered that both ants AND developers run more efficiently when properly caffeinated
+  - Added subtle "Feed the Developer" option to help fuel those 3AM coding sessions
+  - Confirmed through rigorous scientific testing that coffee is not suitable for actual ant consumption
+  - Added advanced colony maintenance subsystem (sending virtual coffee directly to the colony keeper)
+  - Important research note: No ants were given espresso during the development of this feature
+
+### Changed
+- Improved the "feed-developer-to-improve-game" pipeline with more direct caffeine delivery
+- Updated developer's blood caffeine level from "concerning" to "probably fine"
+
+## [0.18.0] - 2025-04-07
+
+### Added
+- Comprehensive Ascension Tree system:
+  - New Ascension Points (AP) currency earned through Mega Ant progression
+  - Visual tree-based upgrade system with interconnected nodes and categories
+  - 30+ unique upgrades across multiple categories: Core, Mega Ant, Colony, Resource, and QoL
+  - Enhanced effect visualization showing exactly what each upgrade impacts
+  - SVG connection system visually connecting prerequisites and upgrade paths
+  - Color-coded upgrades based on category for better visual organization
+  - Detailed descriptions and effects for all upgrades
+  - Enhanced tooltips showing prerequisites and unlock requirements
+  - Status indicators for purchased, available, and locked upgrades
+- Generator-specific Ascension upgrades:
+  - Specialized upgrades for each generator type (Worker, Nursery, Queen Chamber, etc.)
+  - Colony-focused upgrades improving advanced generator structures
+  - Integration with existing multiplier system for consistent bonuses
+- Improved resource production via Ascension:
+  - Enhanced EP and Pheromone gains through dedicated upgrades
+  - Increased stomach capacity and decay rates for better Mega Ant efficiency
+  - Offline progress improvements with dedicated QoL upgrades
+  - Global production multipliers affecting all resource generation
+- New debug features for testing Ascension Points:
+  - Ability to add AP in debug mode for testing new upgrades
+  - AP display in header and sidebar alongside other key resources
+  - Formatted AP counter with appropriate scaling for large numbers
+
+## [0.17.2] - 2025-04-07
+
+### Fixed
+- Fixed generator preset sequence in auto-upgrade system:
+  - Auto-upgrades now strictly follow user-defined preset sequence without reordering
+  - Removed behavior that was moving upgrades to the end of the queue after purchase
+  - System now waits for resources to purchase the next preset upgrade instead of defaulting to cheaper upgrades
+  - Enhanced preset queue UI with better quantity controls and level tracking
+  - Added +/- buttons with numeric display for easier preset configuration
+  - Implemented "Max" button to quickly add all available levels of an upgrade to a preset
+  - Added "Clear" button to remove all instances of a specific upgrade from a preset
+
+## [0.17.1] - 2025-04-07
+
+### Added
+- New Advanced Global Upgrades for the Aphid Farm:
+  - Added three powerful tier-2 upgrades that unlock when their tier-1 counterparts are maxed
+  - Advanced Evolution Catalyst: Provides exponential EP production boosts (10x, 100x, 1000x)
+  - Concentrated Pheromone Matrix: Massively increases pheromone production (15x, 225x, 3375x)
+  - Unified Colony Network: Exponentially boosts all production types (20x, 400x, 8000x)
+  - Enhanced UI with special badges and visual indicators for advanced upgrades
+  - Added unlock requirement hints to guide progression
+
+### Improved
+- Enhanced dark mode readability in the sidebar resource panel:
+  - Added subtle background containers for resource values
+  - Improved contrast for better visibility in dark theme
+  - Consistent styling across all resource types
+
+## [0.17.0] - 2025-04-07
+
+### Added
+- Enhanced desktop navigation with a collapsible sidebar for better experience on larger screens:
+  - Added persistent sidebar that can be expanded or collapsed
+  - Implemented desktop-specific navigation with full items list and category dividers
+  - Added resource summary in the sidebar for quick reference
+  - Added detailed tooltips for navigation items when sidebar is collapsed
+  - Added preference saving to remember sidebar state between sessions
+
+### Improved
+- Redesigned FixedTabNavigation component to work better across all screen sizes:
+  - Changed component position to stick to the top on desktop and bottom on mobile
+  - Enhanced tab styling with better spacing and sizing for desktop users
+  - Improved responsive behavior to adapt to different device sizes
+  - Fixed vertical positioning for better visibility on all screen sizes
+- Improved main content area to better utilize available screen space on desktop
+- Enhanced mobile experience by keeping bottom navigation bar for smaller screens
+
 ## [0.16.0] - 2025-04-06
 
 ### Changed
