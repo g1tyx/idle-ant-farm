@@ -5,6 +5,220 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.37.0] - 2025-04-14
+
+### Added
+- New Collectibles feature:
+  - Created collectible data structure with rarity tiers and boost categories
+  - Implemented level-up system for duplicate collectibles with XP-based progression
+  - Added collectible drop tables to all bugs in Adventure mode
+  - Integrated collectibles with the multiplier system for passive stat boosts
+  - Designed dedicated Collectibles View with filtering and sorting options
+  - Added collectible navigation under the Adventure section
+  - Implemented rarity-based visual styling for collectible cards
+  - Created boost calculation system based on collectible level and rarity
+  - Added detailed collectible information display showing sources and effects
+
+### Changed
+- Enhanced bug drops system to include both items and collectibles
+- Updated Adventure store to handle collectible drops alongside normal loot
+- Improved combat notifications to show collectible acquisition
+- Modified multiplier store to include collectible boost calculations
+
+## [0.36.0] - 2025-04-14
+
+### Added
+- New prestige upgrade category: Aphid Farm.
+- Initial prestige upgrades for Aphid Farm: Enriched Honeydew (yield), Accelerated Maturation (growth time), Efficient Expansion (field cost).
+- Getter functions in `prestigeStore` to dynamically calculate combined Aphid Farm prestige multipliers.
+- UI elements in `AphidFarmPage` to display active Aphid Farm prestige bonuses.
+- `aphidFarmStore` now uses prestige multipliers for yield, growth time, and new field cost calculations.
+- `aphidFarmUpgrades.ts` now exports a function returning the upgrade array, consistent with other categories.
+- Refactored `AphidUpgrade` interface and effect functions in `aphidFarmStore` to use `Decimal` type for better precision.
+- Updated `aphidFarmStore` logic (`getUpgradeEffect`, `getAphidYield`, `getAphidGrowthTime`) to correctly handle `Decimal` effects and use `Decimal` comparison methods.
+- Updated `AphidFarmPage.vue` helper functions to correctly handle `Decimal` effects and avoid redundant level multiplication.
+
+### Changed
+- Refactored Aphid Farm prestige multiplier getters in `prestigeStore` to be dynamic instead of using hardcoded IDs.
+- `aphidFarmStore` now uses prestige multipliers for yield, growth time, and new field cost calculations.
+- `aphidFarmUpgrades.ts` now exports a function returning the upgrade array, consistent with other categories.
+
+## [0.35.0] - 2025-04-14
+
+### Important
+- **I'd highly recommend a hard reset, since progress has been changed drastically**
+
+### Added
+- Added 4 new late-game player stat multiplier upgrades to Adventure mode:
+  - Ultimate Combat Mastery: Boosts damage (20% per level, 20 max levels)
+  - Bio-Adaptive Armor: Boosts max health (20% per level, 20 max levels)
+  - Fortified Colony Defense: Boosts defense (20% per level, 20 max levels)
+  - Rapid Regeneration Surge: Boosts health regeneration (20% per level, 20 max levels)
+
+### Changed
+- Significantly increased the base costs of the new late-game adventure upgrades to better align with late-game scaling (costs now range from 1e9 to 3e9 EP).
+- Adjusted positions and prerequisites for some existing adventure upgrades to accommodate the new late-game tier.
+
+## [0.34.0] - 2025-04-13
+
+### Added
+- **New Visual Prestige Upgrade Tree:**
+  - Introduced the `PrestigeUpgradeTree` component to display Evolution upgrades in a visual tree layout.
+  - Upgrades are positioned in rows/columns based on their `position` data.
+  - SVG lines dynamically connect purchased and available upgrades, showing prerequisites.
+  - Integrated category selector dropdown directly into the tree view.
+  - Added interaction modes (View, Buy, Max) allowing direct purchase/view actions on tree nodes.
+  - Implemented fullscreen toggle button for an expanded tree view.
+- **Enhanced Upgrade Node UI:**
+  - Displayed current effect multiplier directly on purchased upgrade nodes.
+  - Moved level indicator to the top-left corner for better layout and readability.
+  - Added status badges (Purchased checkmark, Available plus sign) and cost display.
+- **Improved Accessibility:**
+  - Added focus management for keyboard navigation between nodes and the details panel.
+  - Implemented ARIA attributes (`role="dialog"`, `aria-modal`, labels, descriptions) for the details panel and tree nodes.
+
+### Changed
+- Replaced the previous list/card view on the `UpgradesPage` with the new `PrestigeUpgradeTree` component.
+- Refined hover states and cursor styles for upgrade nodes based on purchase/affordability status.
+- Improved background contrast for level and effect indicators on nodes.
+
+### Fixed
+- Resolved issue where the absolutely positioned Colony Rush button container could block clicks on underlying elements.
+- Prevented the details modal from opening unintentionally when clicking nodes in 'max' purchase mode.
+
+## [0.33.2] - 2025-04-13
+
+### Added
+- Expanded time achievements from 3 to 15 tiers, ranging from 1 hour to 1 year of playtime
+- Added rewards to all time achievements with global production multipliers (1-10%)
+- Improved time achievement tracking based on first save time for consistent calculation
+- Enhanced achievement descriptions to clarify that time is tracked since first game
+- Added creative names for each achievement tier that reflect progression and ant themes
+- Fixed issue where time achievements were not updating consistently
+
+## [0.33.1] - 2025-04-13
+
+### Added
+- Added 8 new player stat multiplier upgrades to Adventure mode:
+  - Early game upgrades (10% boost per level, 50 max levels):
+    - Combat Training: Increases player damage
+    - Exoskeleton Reinforcement: Increases player max health
+    - Hardened Carapace: Increases player defense
+    - Cellular Regeneration: Increases player health regeneration
+  - Mid-game upgrades (15% boost per level, 30 max levels):
+    - Advanced Combat Techniques: Further increases player damage
+    - Chitin Evolution: Further increases player max health
+    - Organized Defense: Further increases player defense
+    - Advanced Healing: Further increases player health regeneration
+- Enhanced adventure combat calculation to automatically apply all stat multipliers
+- Made the stat multiplier system generic to easily accommodate future stat-based upgrades
+
+## [0.33.0] - 2025-04-12
+
+### Changed
+- Rebalanced EP-related prestige upgrades to slow down post-evolution progression:
+  - Increased `baseCost` and `costMultiplier` for upgrades like `exponentialEP`, `multiBoost`, `advancedTierBoost`, `grandSynergy`, `supremeColonyNexus`, `alateEvolutionaryLeap`, `evolutionaryConvergence`, and all "Master" tier generator optimizations.
+- Rebalanced cost scaling for tiered generator optimization prestige upgrades (Begin/Advanced/Master):
+  - Increased base multipliers in `costMultiplier` (Begin: 1.4, Advanced: 1.7, Master: 2.0).
+  - Added an additional exponent (`.pow(1.1)`) to `costMultiplier` for significantly steeper cost increase per level within each tier.
+- Implemented helper functions (`calculateUpgradeCostAtLevel`, `linkTieredUpgradeCosts`) to automatically link the `baseCost` of Advanced/Master tier upgrades to the max cost of the preceding tier.
+
+## [0.32.0] - 2025-04-12
+
+### Added
+- Added confirmation dialog for Max upgrade purchases in Evolution tab
+- Implemented setting to toggle Max purchase confirmation (default off)
+- Dialog shows how many levels will be purchased and total cost before confirming
+- Added 5-second auto-dismiss timer for the confirmation dialog
+
+## [0.31.0] - 2025-04-12
+
+### Added
+- Added three powerful scaling prestige upgrades that become stronger as you progress:
+  - Evolution Power: Each evolution completed adds 2% boost to all generators per level (up to 10 levels)
+  - Evolutionary Insight: Each evolution completed adds 1% boost to EP gain per level (up to 15 levels)
+  - Worker Ant Synergy: Each manually purchased worker ant adds 0.01% boost to EP gain per level (up to 20 levels)
+- Enhanced Upgrade Cards to show both current and next level effects for all upgrades
+- Added detailed scaling information for synergy-type upgrades that shows exactly what each upgrade scales with
+- Improved tooltip information for scaling upgrades to better explain their long-term value
+
+### Changed
+- Balanced new scaling upgrades with higher costs and steeper cost scaling to represent their powerful effects
+- Evolution Power: 500 EP base cost with 3.0x multiplier per level
+- Evolutionary Insight: 750 EP base cost with 3.5x multiplier per level
+- Worker Ant Synergy: 250 EP base cost with 2.2x multiplier per level
+
+## [0.30.0] - 2025-04-12
+
+### Added
+- Added comprehensive generator optimization upgrades for all generator types:
+  - Each generator (Worker, Nursery, Queen Chamber, etc.) now has three tiers of optimization upgrades (Begin, Advanced, Master)
+  - Begin tier provides base production boost and small EP bonus
+  - Advanced tier offers stronger production boost and moderate EP bonus
+  - Master tier grants substantial production boost and significant EP bonus
+  - Higher-tier generators have proportionally higher costs reflecting their later-game unlock
+  - All optimization upgrades include combo effects that boost both generator production and EP gain
+
+## [0.29.1] - 2025-04-12
+
+### Changed
+- Improved Pheromone Shop UI for better user experience:
+  - Reorganized shop item layout with information on the left and buttons on the right
+  - Replaced holdable buttons with standard buttons for more consistent interaction
+  - Made each upgrade button take 50% of the available height for easier clicking
+  - Enhanced layout consistency across different screen sizes
+- Significantly improved visibility of Boss auto-repeat button:
+  - Enlarged button size and added text label for better clarity
+  - Moved button to a more prominent position between boss stats and rewards
+  - Enhanced visual appearance with stronger color contrast
+  - Improved button labeling to clearly indicate functionality
+
+## [0.29.0] - 2025-04-12
+
+### Changed
+- Applied max level cap (`50`) to several prestige production upgrades (`foodProcessing`, `foodProcessingAdvanced`, `efficientQueens`, `efficientQueensAdvanced`, `strongerSoldiers`, `nurseryEfficiency`, `colonyExpansion`) based on user feedback about "endless" upgrades becoming meaningless.
+
+## [0.28.1] - 2025-04-12
+
+### Added
+- Added new "Reward Value" sort option for quests to prioritize the most valuable quests
+- Implemented visual value indicators (Low/Medium/High) on quest cards for easier identification
+- Added calculation system that considers all rewards including multipliers when sorting quests
+
+### Changed
+- Changed default quest sorting to use reward value instead of tier for better player experience
+- Enhanced the quest filtering interface with clearer labels and improved organization
+
+## [0.28.0] - 2025-04-12
+
+### Changed
+- Significantly enhanced the Mega Ant ascension system to make it more rewarding:
+  - Doubled the ascension multiplier from 0.25x to 0.5x per ascension level
+  - Quadrupled the base ascension points gained (from 1 to 3)
+  - Tripled the bonus point calculation multiplier (from 1.5 to 4.5)
+  - Greatly increased all milestone rewards (e.g., level 50 now gives 40 points instead of 12)
+  - Enhanced all ascension upgrade values throughout the tree
+- Boosted colony upgrades that persist through ascension:
+  - Evolution Synergy: Increased from 5% to 15% EP gain per level
+  - Pheromone Enhancement: Increased from 10% to 25% pheromone gain per level
+  - Colony Coordination: Increased from 5% to 15% global production per level
+  - Evolution bonus multiplier: Increased from 10% to 20% per evolution
+- Strengthened base Mega Ant upgrades for better progression:
+  - Digestive Capacity: Doubled from +25 to +50 capacity per level
+  - Digestive Speed: Doubled from +20% to +40% speed per level
+  - Digestive Efficiency: Doubled from +25% to +50% XP per level
+  - Pheromone systems: Doubled capacity and decay rate increases
+
+## [0.27.0] - 2025-04-12
+
+### Fixed
+- Fixed generator preset sequence in auto-upgrade system:
+  - Implemented true round-robin approach for preset upgrades that strictly follows the user-defined sequence
+  - Modified auto-upgrade to track the last purchased upgrade position for each preset
+  - System now cycles through preset upgrades in the exact order defined, continuing from the last purchase
+  - Added circular traversal logic to enhance preset functionality and prevent sequence restarting
+  - Fixed issue where auto-upgrader would always start from the beginning of the sequence on each run
+
 ## [0.26.0] - 2025-04-10
 
 ### Added
@@ -1360,36 +1574,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Removed automatic equipment slot refresh watcher in App.vue in favor of manual refresh button
-
-### Fixed
-
-- Fixed issue with equipment slots not properly updating when new slots are unlocked
-
-## [0.1.1]
-
-### Added
-
-- New Evolution Settings section in the Settings page
-- Auto-enable generators after prestige setting to automatically re-enable all auto-purchases after evolving
-- CHANGELOG.md file to track project changes
-
-### Changed
-
-- Updated prestige reset logic to respect the new auto-enable generators setting
-- Improved settings organization by grouping Evolution-related settings together
-
-### Fixed
-
-- None
-
-### Removed
-
-- None
-
-### Security
-
-- None
-
-## [0.1.0] - 2025-03-14
-
-- Initial release
