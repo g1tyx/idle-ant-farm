@@ -1,9 +1,115 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [0.42.0] - 2025-04-15
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Added
+- Added new Trip Reduction prestige upgrades to reduce cycle requirements:
+  - Basic Trip Reduction: Reduces required trips per cycle by 5 per level
+  - Advanced Trip Reduction: Reduces required trips by 10 per level and increases EP gain by 10% per level
+- Made trip reduction calculation system generic to handle any number of upgrades targeting cycle trips
+- Enhanced calculateTripsPerCycle function to automatically detect and apply all trip reduction effects
+
+### Changed
+- Significantly increased cost scaling for Trip Reduction upgrades to better balance their powerful effects
+- Basic Trip Reduction now uses exponential scaling with 3^(level*1.2) multiplier
+- Advanced Trip Reduction has steeper scaling with combined 4^level and 1.5^(level^1.5) multipliers
+- Increased Advanced Trip Reduction base cost from 1,000 to 5,000 EP
+
+## [0.41.0] - 2025-04-15
+
+### Added
+- Improved search functionality in the Prestige Upgrade Tree component
+- Enhanced dropdown visibility in fullscreen mode
+- Better positioning and scrolling behavior for the upgrade search dropdown
+
+### Fixed
+- Z-index issues with the Prestige Upgrade search dropdown
+- Proper dropdown positioning using Teleport for more reliable UI
+- Adaptive dropdown behavior based on fullscreen state
+
+## [0.40.0] - 2025-04-15
+
+### Added
+- Implemented comprehensive Daily Rewards system:
+  - Added a new dedicated Daily Rewards tab in the game UI
+  - Created a streak-based reward system that increases rewards for consecutive daily logins
+  - Implemented dynamic reward scaling that adjusts based on player progression
+  - Added visual indicators for claimed and available rewards
+  - Rewards include food, pheromone essence, evolution points, and special items
+  - Designed streak milestones with bonus rewards at 7, 14, 21, and 30 days
+  - Created persistent streak tracking that saves between sessions
+  - Added notifications for available daily rewards and streak milestones
+
+## [0.39.1] - 2025-04-15
+
+### Added
+- Enhanced Ascension preservation system to maintain more progress:
+  - Time Manipulation upgrades (all tiers) are now preserved during ascension
+  - All Aphid Farm progress and upgrades are now retained during ascension
+  - Collectibles and their levels are now preserved during ascension
+- Updated the Ascension Confirmation Modal to clearly communicate these benefits
+
+## [0.39.0] - 2025-04-15
+
+### Added
+- Added zoom functionality to the Prestige Upgrade Tree:
+  - Implemented zoom controls directly in the UI next to interaction modes
+  - Added zoom in (+25%) and zoom out (-25%) buttons for adjusting tree view
+  - Added reset zoom button with percentage indicator showing current zoom level
+  - Implemented smooth zoom transitions with transform animations
+  - Limited zoom range from 50% to 300% for usability
+  - Added automatic redrawing of connection lines after zoom completes
+  - Enhanced the tree layout with proper scaling that maintains visual relationships
+  - Properly adjusted scroll area when zooming to ensure all content remains accessible
+  - Persisted zoom level and interaction mode in the game state for consistent experience when switching pages
+
+### Fixed
+- Fixed an issue where zoomed content would be cut off in the Prestige Upgrade Tree
+- Improved scroll behavior when using zoom functionality to allow reaching all parts of zoomed trees
+- Added proper container expansion when zooming to ensure horizontal and vertical scrolling works correctly
+- Fixed zoom and interaction mode state being reset when navigating away from and back to the upgrade tree
+
+## [0.38.0] - 2025-04-15
+
+### Added
+- Added "Confirm Evolution" setting to control whether a confirmation dialog is shown before evolving:
+  - New toggle in Evolution Settings section that defaults to on
+  - When disabled, clicking the Metamorphose button directly triggers evolution without confirmation
+  - When enabled, shows the standard confirmation dialog with EP gain information
+  - Setting is persisted between game sessions
+
+## [0.37.3] - 2025-04-15
+
+### Added
+- Enhanced Evolution Points multiplier breakdown system:
+  - Added clear visual indicators showing which multipliers are additive (+) vs multiplicative (×)
+  - Implemented detailed calculation explanation at the top of the breakdown
+  - Added Aphid Farm EP boost to the multiplier breakdown for completeness
+  - Enhanced the UI to show additive subtotal before applying multiplicative bonuses
+  - Added color coding for different multiplier types (green for additive, yellow for multiplicative)
+
+### Fixed
+- Fixed percentage display in Evolution Status Section for EP multiplier bonus to correctly show bonus amount
+- Corrected calculation explanation in the breakdown modal to match actual game mechanics
+
+## [0.37.2] - 2025-04-15
+
+### Fixed
+- Fixed issue where Aphid Farm global upgrades weren't properly applying to multipliers:
+  - Added Tier 2 global boost to the global multipliers calculation
+  - Added both Tier 1 and Tier 2 EP boosts to the EP boost multiplier
+  - Added Tier 2 pheromone boost to the pheromone gain multiplier
+  - Ensured all Aphid Farm global upgrades apply their correct values (EP: 1.5^level/10^level, Pheromone: 1.75^level/15^level, Global: 2^level/20^level)
+  - Improved error handling when calculating honeydew-based global upgrades
+
+## [0.37.1] - 2025-04-15
+
+### Improved
+- Enhanced PrestigeUpgradeTree component to properly space nodes based on their grid positions:
+  - Added placeholder nodes for empty column positions to maintain proper grid layout
+  - Improved visual representation of upgrade paths with better spacing between nodes
+  - Fixed cramped appearance when upgrades have non-sequential column positions
+  - Optimized grid layout calculation while preserving existing connection drawing logic
 
 ## [0.37.0] - 2025-04-14
 
