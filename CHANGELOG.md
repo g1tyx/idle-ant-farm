@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.43.1] - 2025-04-17
+
+### Added
+- Added a setting in the "Colony Settings" section to toggle quest start and completion notifications.
+
+## [0.43.0] - 2025-04-17
+
+### Added
+- Added detailed tooltips to the Prestige Upgrade Tree: Hover over an upgrade node to see its full description, effects, cost, and status without opening the details panel.
+- Introduced a new Upgrade List Sidepanel: Access a filterable and sortable list of all prestige upgrades directly from the tree view for easier browsing and purchasing.
+
+### Fixed
+- Improved tooltip positioning in the Prestige Upgrade Tree: Tooltips now correctly appear next to the hovered upgrade, even when the tree is scrolled or zoomed.
+- Enhanced tooltip visibility: Tooltips will now intelligently reposition themselves (e.g., appear below a node instead of above) to avoid being cut off at the edges of the view.
+
+## [0.42.1] - 2025-04-16
+
+### Fixed
+- Fixed multiplier calculation to properly apply additive multipliers before multiplicative ones:
+  - Modified the calculation logic in multiplierStore to first add all additive bonuses to the base value
+  - Then apply multiplicative bonuses to the result, ensuring consistent mathematics
+  - Updated combo effect handling to properly treat effects with isMultiplier=false as additive
+  - Improved multiplier breakdown UI to clearly explain the calculation order
+  - Enhanced visual presentation in the breakdown modal to better distinguish between additive and multiplicative bonuses
+
 ## [0.42.0] - 2025-04-15
 
 ### Added
