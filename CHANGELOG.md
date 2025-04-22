@@ -1,5 +1,70 @@
 # Changelog
 
+## [0.45.3] - 2025-04-21
+
+### Added
+- Added dynamic maxLevel scaling system for prestige upgrades based on ascension count:
+  - Upgrades with maxLevel now automatically increase their cap based on your ascension progress
+  - Different scaling rates for different ranges of maxLevels (small, medium, large)
+  - Small maxLevels (2-5) scale at 10% per ascension, capped at doubling
+  - Medium maxLevels (6-10) scale at 15% per ascension, capped at doubling
+  - Large maxLevels (>10) scale at 20% per ascension, capped at doubling
+  - Upgrades with maxLevel of 1 remain unchanged to maintain game balance
+  - Automatic recalculation after loading a save, prestiging, ascending, or viewing the Upgrades page
+
+## [0.45.2] - 2025-04-21
+
+### Fixed
+- Fixed issue where Neurotrails bonuses were being reset during ascension:
+  - Modified the ascension process to preserve Neurotrails state during ascension
+  - Ensured all node contributions and active boosts persist after ascension
+  - Maintained completed tasks and visited nodes through the ascension process
+
+## [0.45.1] - 2025-04-21
+
+### Added
+- Added pause/resume functionality for active quests.
+- Persisted quest pause state in save data.
+
+## [0.45.0] - 2025-04-21
+
+### Fixed
+- Fixed critical issues in the Neurotrails system:
+  - Fixed a bug where node bonuses were being lost when leaving a node
+  - Fixed issue with multi-node travel stopping at intermediary nodes
+  - Ensured all completed task bonuses are properly persisted and calculated
+  - Improved path tracking during long journeys through multiple nodes
+  - Enhanced rebuildNodeContributions functionality to maintain all task bonuses
+
+## [0.44.0] - 2025-04-21
+
+### Added
+- Implemented Google login with cloud saving functionality:
+  - Securely save your game progress to the cloud
+  - Seamlessly sync your colony between multiple devices
+  - Never lose your progress with automatic cloud backups
+  - Easy sign-in using your Google account
+- Introduced the Neurotrails system, a powerful new game mechanic:
+  - Unlock neural pathways that boost various aspects of your colony
+  - Progress through an interconnected network of upgrades
+  - Earn specialized boosts targeting specific generator types
+  - Gain powerful global multipliers as you expand your network
+
+### Changed
+- Enhanced the Ascension Tree View with improved usability features:
+  - Added zoom functionality to better navigate complex upgrade paths
+  - Implemented zoom in/out controls with percentage indicators
+  - Added responsive modal dialog for detailed upgrade information
+  - Improved mobile experience with optimized controls
+
+### Fixed
+- Resolved several critical multiplier calculation issues:
+  - Fixed incorrect application of additive and multiplicative bonuses
+  - Corrected generator-specific multiplier calculations
+  - Ensured proper application of global production modifiers
+  - Enhanced multiplier breakdown display for better clarity
+- Fixed various minor bugs and performance issues throughout the game
+
 ## [0.43.1] - 2025-04-17
 
 ### Added
