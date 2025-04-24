@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.46.0] - 2025-04-22
+
+### Added
+- **New Feature: Ant Morale!**
+  - Your ants now have morale, affecting their work ethic!
+  - High morale boosts worker ant food production, while low morale slows them down.
+  - Morale naturally decreases over time.
+  - **Interact:** Click or tap the simulation background to motivate your ants and boost their morale!
+  - **Visual Feedback:** See morale reflected in the simulation - happier ants move faster!
+  - Added a dedicated morale display panel in the Simulation page.
+  - Integrated morale display into the main header for easy monitoring.
+
+### Changed
+- Removed the old settings panel from the Simulation page, replacing it with the new focused morale display.
+
+## [0.45.4] - 2025-04-22
+
+### Added
+- Added new StatsPage to provide comprehensive game statistics
+- Enhanced Mega Ant components for better user experience:
+  - Improved AscensionConfirmationModal with clearer ascension benefits
+  - Enhanced AscensionTreeView for better visualization of upgrades
+  - Optimized DesktopUpgradeLayout and MobileUpgradeTabView for responsive design
+- Modified router.ts to include the new StatsPage route
+
+### Changed
+- Updated prestige production upgrades for better balance
+- Improved multiplier calculations in multiplierStore.ts
+- Enhanced megaAntStore.ts with optimized ascension mechanics
+- Refined prestigeStore.ts for more consistent upgrade handling
+- Updated MainLayout.vue to accommodate the new statistics page
+
 ## [0.45.3] - 2025-04-21
 
 ### Added
