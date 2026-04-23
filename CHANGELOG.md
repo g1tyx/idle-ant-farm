@@ -1,5 +1,692 @@
 # Changelog
 
+## [0.57.0] - 2025-08-02
+
+### Enhanced
+ - A lot of minor improvements to UX
+ 
+## [0.56.0] - 2025-07-28
+
+### Added
+- **🌟 Ascension Point Shop System**:
+  - **Major Enhancement**: Added a compelling reason to continue ascending beyond the initial progression!
+  - Implemented 6 permanent progression tracks: Evolution Mastery, Food Abundance, Worker Excellence, Pheromone Mastery, Universal Efficiency, and Aphid Optimization
+  - Created exponential scaling multipliers (1.5x per level) that persist through all future ascensions
+  - Added beautiful shop interface with color-coded upgrade tracks and detailed progression information
+  - Integrated ascension point multipliers into the core multiplier system for comprehensive bonus stacking
+  - **Game Impact**: Transforms ascension from a reset-only mechanic into a long-term progression strategy
+
+### Enhanced
+- **Ascension System Overhaul**:
+  - Extended MegaAnt store with ascension point upgrade tracking and management system
+  - Added comprehensive save/load functionality for permanent upgrade persistence
+  - Integrated shop component into both mobile and desktop Mega Ant tab layouts
+  - Enhanced multiplier breakdown system to include ascension point bonuses for transparency
+  - **Player Experience**: Ascending now provides meaningful permanent benefits that accumulate over time
+
+## [0.55.0] - 2025-07-28
+
+### Fixed
+- **Boss Health Scaling Rebalance**:
+  - Fixed impossible boss health scaling that was making late-game bosses unbeatable
+  - Changed from exponential jumps (e1000 → e2100 → e5100 → e10000+) to manageable e80 increments
+  - Rebalanced damage and defense values proportionally to maintain combat challenge
+  - Updated special ability damage to reasonable levels (e.g., Omega Blast from 1e6950 to 1e1100)
+  - Reduced food/sec unlock requirements to match the new progression curve
+  - Bosses now provide challenging but achievable progression from e1000 to e1400
+
+- **Bug Health Scaling Rebalance**:
+  - Applied same scaling fix to Adventure mode bugs for consistent progression
+  - Fixed bug health scaling from massive exponential jumps to steady e80 increments
+  - Rebalanced all late-game bugs (Radioactive Spider through Ant Training Master)
+  - Updated damage and defense values to maintain balanced combat difficulty
+  - Both boss and bug systems now use the same reasonable e80 scaling pattern
+  - Enhanced late-game content to be challenging but achievable rather than impossible
+
+### Enhanced
+- **Balanced Progression System**:
+  - Unified scaling approach across both boss and bug combat systems
+  - Created consistent difficulty curve that players can actually progress through
+  - Maintained challenging gameplay while removing impossible progression walls
+  - Improved late-game content accessibility without reducing overall difficulty
+
+## [0.54.1] - 2025-07-28
+
+### Added
+- **Aphid Enhancement Boss Fragment Upgrade**:
+  - Added new "Aphid Enhancement" progression track to Boss Fragment Shop
+  - Implemented aphid yield multiplier that scales with boss fragment upgrades (2^level scaling)
+  - Enhanced BossFragmentShop.vue to dynamically populate progression tracks from store data
+  - Added pink color theming for the new aphid enhancement track with flower icon
+  - Integrated aphid boost multipliers into the aphid farm yield calculation system
+
+### Enhanced
+- **Boss Fragment Store Architecture**:
+  - Added ProgressionTrack interface for better type safety and maintainability
+  - Centralized progression track definitions in bossFragmentStore for easier management
+  - Updated BossFragmentShop component to automatically display new tracks without code changes
+  - Enhanced color system to support additional track themes (pink for aphid enhancement)
+
+## [0.54.0] - 2025-07-28
+
+### Added
+- **Boss Fragment Progression System**:
+  - Implemented Boss Fragments as a new secondary currency dropped by defeated bosses
+  - Added scaling drop rates for boss fragments (1% for Training Dummy up to 50% for Omega Ant)
+  - Created dedicated Boss Fragment Store (`bossFragmentStore`) for managing fragments and upgrades
+  - Added Boss Fragment Shop with 4 progression tracks:
+    - **EP Gain**: Multiplies Evolution Point production (2^level scaling)
+    - **Food Production**: Multiplies global food production (2^level scaling)  
+    - **Worker Efficiency**: Multiplies worker generator output (2^level scaling)
+    - **Pheromone Generation**: Multiplies pheromone essence gains (2^level scaling)
+  - Implemented linear cost scaling model (5, 10, 15, 20... fragments per upgrade)
+  - Added tabbed navigation to Boss Page with "Boss Challenges" and "Fragment Shop" sections
+  - Enhanced BossCard component to display fragment drop chances and rewards
+  - Added boss fragment currency display in main layout header and sidebar
+  - Integrated fragment multipliers into the main multiplier system for consistent bonus application
+  - Added boss fragment colors to currency color system (red theme)
+  - Enhanced multiplier breakdown modals to show boss fragment bonuses in EP and Pheromone sections
+  - Created dedicated boss fragment multiplier breakdown function in useMultipliers composable
+  - Added boss fragment tracking and rewards to boss defeat handling
+  - Integrated boss fragment persistence into save/load system
+
+### Enhanced
+- **Boss System Integration**:
+  - Boss fragments now appear in all relevant multiplier breakdown displays
+  - Fragment bonuses are clearly labeled and categorized as multiplicative effects
+  - Boss defeat logs now show fragment acquisition with drop chance percentages
+  - UI consistently displays current fragment amounts when boss system is unlocked
+
+## [0.53.3] - 2025-07-27
+
+### Changed
+- **Aphid Global Upgrade changes**:
+  - Changed some of the scaling of most upgrades
+  - Changed the max level of all upgrades, to allow for more upgrading.
+
+## [0.53.2] - 2025-07-27
+
+### Changed
+- **Generator Upgrade Cost Rebalancing**:
+  - Simplified all generator upgrade costs to follow a clear 1-2-3 tier system based on power level
+  - **Cost Tier 1 (Cost = 1)**: Basic efficiency upgrades (20% per level) and simple cost reduction upgrades (5% per level)
+  - **Cost Tier 2 (Cost = 2)**: Moderate upgrades with better multipliers (12-15% per level), base production increases, and moderate single-target effects
+  - **Cost Tier 3 (Cost = 3)**: Powerful upgrades including complex synergy effects, EP boosting effects, global effects, pheromone production boosts, cross-generator effects, adventure/boss combat boosts, and advanced scaling with diminishing returns
+  - **Major Cost Reductions**: Many high-cost upgrades significantly reduced (e.g., from 60→3, 50→3, 40→3, 35→3, 30→3, 25→3, etc.)
+  - Created a more balanced and accessible upgrade progression while maintaining clear power tiers
+  - Made the upgrade system more intuitive with costs that directly reflect upgrade power and complexity
+
+## [0.53.1] - 2025-07-21
+
+### Added
+- **Generator Max Level System**:
+  - Implemented a max level cap for generator specializations, initially set to 20.
+  - Added prestige upgrades in the `upgrade_specialization` category to increase the max level of specific generators.
+  - The UI now displays the current and max level (e.g., "Lvl 15 / 25") for each generator's specialization.
+
+- **Advanced Generator Upgrades**:
+  - **Cross-Generator Synergies**: Upgrades that allow generators to support and enhance each other (e.g., workers reducing costs for nurseries and queen chambers, nurseries boosting queen chamber efficiency).
+  - **Global Efficiency Boosts**: High-tier upgrades that affect all generators simultaneously, creating powerful late-game scaling opportunities.
+  - **Evolution Point (EP) Amplifiers**: Specialized upgrades that increase EP gain based on generator counts and evolution cycles, accelerating prestige progression.
+  - **Pheromone Production Networks**: Upgrades that establish communication networks between generators to boost pheromone production.
+  - **Adventure & Combat Enhancements**: Upgrades that improve adventure success rates and boss combat effectiveness through coordinated ant efforts.
+  - **Automation Optimization**: Advanced upgrades that reduce automation costs and increase automation speeds through technological development.
+  - **Standardized Scaling**: All synergy-based upgrades now use consistent "per 5 generators" scaling for balanced progression.
+
+### Changed
+- The generator specialization leveling logic now respects the max level cap, preventing further level-ups once the maximum is reached.
+- The `generatorUpgradeStore` now computes max levels dynamically, taking into account both base max levels and bonuses from prestige upgrades.
+
+### Fixed
+- **Game Loop Synchronization**:
+  - Improved game loop stability by converting the main `tick` function to an `async` operation.
+  - This ensures that all calculations within a tick, especially for offline progress, are fully completed before the next tick begins, preventing race conditions and improving state consistency.
+- **Offline Progress UI Desync**:
+  - Fixed an issue where the offline progress bar could finish before the calculations were complete.
+  - The offline progress calculation now properly `awaits` each batch of ticks, ensuring the UI remains synchronized with the background processing.
+
+## [0.52.0] - 2025-07-20
+
+### Added
+- **Trip Reduction Breakdown System**:
+  - Added comprehensive trip reduction showcasing in the Evolution Status Section
+  - Implemented clickable trip reduction indicator with detailed breakdown modal
+  - Created TripReductionBreakdownModal showing all active upgrades that reduce trip requirements
+  - Added visual indicators (green badges) when trip reductions are active
+  - Trip reduction display shows exact number of trips saved per cycle instead of percentages
+  - Enhanced tooltips with detailed breakdown of base vs actual trip requirements
+
+- **Food Reduction Breakdown System**:
+  - Added comprehensive food reduction showcasing in the Evolution Status Section  
+  - Implemented clickable food reduction indicator with detailed breakdown modal
+  - Created FoodReductionBreakdownModal showing all active upgrades that reduce food requirements
+  - Added new `food_reduction` category and `cycle_food` target type to prestige upgrade system
+  - Enhanced food reduction display with intelligent formatting for different reduction types
+  - Added visual indicators (orange badges) when food reductions are active
+
+- **New Food Reduction Upgrade**:
+  - Added `cycleFoodDivisionReduction` prestige upgrade using exponential division mechanics
+  - Implemented division-based food reduction (÷100^level) similar to cost reduction upgrades
+  - Positioned upgrade strategically below existing `cycleFoodReduction` in the upgrade tree
+  - Added to `food_reduction` category for generic system compatibility
+
+### Enhanced
+- **Prestige Store Food Reduction System**:
+  - Updated prestigeStore with generic `getCycleFoodReductionMultiplier()` function
+  - Replaced hardcoded `cycleFoodReduction` references with dynamic upgrade detection
+  - Enhanced system to handle any upgrades targeting `cycle_food` or having `food_reduction` category
+  - Improved `completeLoop`, `resetProgress`, and `calculateFoodForCycle` functions to use generic calculation
+
+- **Improved Reduction Formatting**:
+  - Enhanced formatting to display division-based reductions as "÷X" format (e.g., "÷1000")
+  - Percentage-based reductions continue to show as percentages (e.g., "25.0%")
+  - Applied consistent formatting across both breakdown modals and main UI indicators
+  - Fixed template logic to avoid showing confusing "-÷1000" format
+
+### Changed
+- **Evolution Status Section UI**:
+  - Trip and food reduction indicators are now clickable buttons with hover effects
+  - Added breakdown modals accessible via clicking reduction badges
+  - Enhanced tooltips to indicate breakdown functionality ("Click for breakdown")
+  - Improved visual hierarchy with distinct colors (green for trips, orange for food)
+  - Added keyboard accessibility (Escape key support) for all breakdown modals
+
+## [0.51.1] - 2025-07-19
+
+### Fixed
+- **Pheromone Shop Modifier Unlock Issue**:
+  - Fixed issue where pheromone shop modifiers that unlock at specific levels (e.g., "Food Production +8% per level above 20") would give 0% benefit at the unlock level
+  - Modified `getCurrentModifierValue` function to add 1 to the level for modifiers that unlock at levels > 1, ensuring players get immediate benefit when unlocking new modifiers
+  - Players now receive the intended bonus immediately upon reaching the unlock level instead of having to level up one more time
+
+## [0.51.0] - 2025-07-19
+
+### Changed
+- Too much to mention, mostly performance things.
+
+## [0.50.1] - 2025-07-18
+
+### Added
+- **Mobile-Optimized Prestige Tree Interface**:
+  - Added collapsible topbar functionality to the Prestige Upgrade Tree for better mobile experience
+  - Implemented toggle button to hide/show tree controls, maximizing available screen space on mobile devices
+  - Added responsive button sizing with smaller touch targets on mobile (reduced padding, icons, and text sizes)
+  - Enhanced search input with mobile-friendly sizing and improved responsiveness
+
+### Changed
+- **Enhanced UpgradesPage Navigation**:
+  - Migrated UpgradesPage to use a toggle system between "Metamorphosis Status" and "Evolution Upgrades" views
+  - Made both views utilize full viewport height (100vh - navigation height) for easier navigation
+  - Added tab-based interface with mobile-optimized labels ("Status" vs "Metamorphosis Status")
+  - Improved space utilization by allowing users to focus on one view at a time
+  - Enhanced tab styling with responsive sizing and icon scaling
+
+### Improved
+- **Mobile User Experience**:
+  - Significantly reduced UI element sizes on mobile devices for better screen space utilization
+  - Made topbar controls collapsible to provide more room for the upgrade tree on small screens
+  - Enhanced touch interaction with appropriately sized buttons and controls
+  - Improved readability with responsive text sizing throughout the Prestige Tree interface
+  - Added intuitive mobile-first design patterns while maintaining desktop functionality
+
+## [0.50.0] - 2025-07-18
+
+### READ
+- **IMPORTANT**:
+  - There's been a HUGE refactor and phasing change, recommended to reset!
+
+## [0.49.8] - 2025-07-18
+
+### Added
+- **Flexible Fractional Tick System**:
+  - Implemented comprehensive fractional tick system allowing callbacks at any fraction of the main tick cycle (0.1, 0.5, 0.75, etc.)
+  - Added support for easy registration of callbacks at specific tick fractions with `addFractionalTick()` function
+  - Created automatic execution ordering based on fraction values with fire-once-per-tick guarantee
+  - Implemented robust error handling and validation for fractional tick callbacks
+  - Added comprehensive documentation with practical examples and timeline visualization
+  - Enabled easy expansion for future features requiring sub-tick processing
+
+### Changed
+- **Automation Processing Load Balancing**:
+  - Moved all automation processing (auto-purchase, auto-upgrade) from generator store to fractional tick system
+  - Automation now runs at 0.5 fractional tick (mid-cycle) instead of at tick start for better load distribution
+  - **Performance Improvement**: Processing load now distributed across tick cycle: 0.0-0.5 (generator production) → 0.5 (automation) → 0.5-1.0 (other systems)
+  - Removed automation processing from all generator store tick functions to prevent duplication
+  - Enhanced system maintainability by separating automation concerns from core generator logic
+
+### Technical Improvements
+- Enhanced game store with `currentTickCount` tracking for accurate fractional tick processing
+- Added automatic fractional tick reset system ensuring clean state between tick cycles
+- Improved code organization by centralizing automation processing in game store
+- Created reusable fractional tick framework for future sub-tick feature implementation
+
+## [0.49.7] - 2025-07-18
+
+### Changed
+- **Major PrestigeUpgradeTree Refactor**:
+  - Completely overhauled PrestigeUpgradeTree.vue component architecture for better performance and maintainability
+  - Improved visual tree rendering with enhanced node positioning and connection drawing algorithms
+  - Enhanced user interaction patterns with more responsive node selection and navigation
+  - Optimized tree layout calculations for better scalability with large upgrade trees
+  - Streamlined component structure to reduce complexity and improve code readability
+
+- **Multiplier and Bonus Calculation System Overhaul**:
+  - Extensively refactored multiplierStore.ts calculation engine for improved accuracy and performance
+  - Enhanced multiplier source tracking with better categorization and source attribution
+  - Improved additive vs multiplicative bonus handling for more consistent gameplay mechanics
+  - Optimized calculation order to ensure proper multiplier stacking and effect application
+  - Added comprehensive source tracking for better debugging and transparency of bonus calculations
+  - Enhanced multiplier breakdown system with improved categorization and detailed effect attribution
+  - Streamlined bonus aggregation logic to reduce computational overhead and improve game performance
+
+## [0.49.6] - 2025-07-18
+
+### Fixed
+- **Aphid Farm Global Upgrades Balance**:
+  - Addressed concern that global upgrades were too powerful and too easy to reach without investing in individual aphid upgrades
+  - **Power Rebalancing**: Reduced global upgrade effects from exponential scaling (1.5^level, 2^level, up to 20^level) to linear scaling (25% per level, 30% per level, 50% per level)
+  - **Cost Increases**: Increased base costs from 100K-50M to 500K-25M honeydew to make upgrades more expensive
+  - **Prerequisites Added**: Implemented mandatory individual upgrade investment requirements:
+    - Basic upgrades require 5-8 aphid upgrade levels
+    - Advanced upgrades require 15-25 levels + 500K-2M honeydew spent on individual upgrades
+    - Late-game upgrades require 40+ levels + 10M+ honeydew spent
+  - **New Upgrade Types**: Added three new categories focused on enhancing individual upgrades rather than replacing them:
+    - **Aphid Synergy Network**: Amplifies individual aphid upgrade effects by 20% per level
+    - **Honeydew Efficiency Matrix**: Reduces individual aphid upgrade costs by 10% per level
+    - **Honeydew Mastery**: Provides late-game honeydew production boost with high prerequisites
+  - **UI Improvements**: Enhanced GlobalUpgrades.vue to show prerequisite requirements and warnings when not met
+  - **Strategic Depth**: Global upgrades now complement rather than overshadow individual aphid upgrades, encouraging balanced investment
+
+- **Quest EP Reward Balance**:
+  - Addressed concern that Evolution Point rewards from quests were too powerful and could trivialize early game progression
+  - **Ascension Requirement**: EP rewards from quests now require the player to have ascended at least once before being granted
+  - **Reduced Early Game EP**: Removed EP rewards from all tier 1 and tier 2 quests (early game quests)
+  - **Reward Replacements**: Replaced removed EP rewards with appropriate alternatives:
+    - Food rewards for resource collection quests
+    - Pheromone rewards for combat and exploration quests
+    - Additional multiplier rewards for progression bonuses
+  - **Late Game Focus**: Kept EP rewards for tier 3+ quests (gated behind ascension) to maintain their value as post-ascension kickstarters
+  - **User Feedback**: Players attempting to claim EP rewards without ascension receive a clear message about the requirement
+  - **UI Improvements**: Enhanced QuestTabContent.vue with visual feedback showing EP reward blocking:
+    - Added prominent warning banner when EP rewards are available but blocked
+    - Individual EP rewards show "Locked" badges for non-ascended players
+    - Completed quests show "Skipped" badges for blocked EP rewards
+    - Clear tooltips explaining ascension requirements
+    - Guides players to the Mega Ant tab to learn about ascension
+  - **Strategic Intent**: EP rewards now serve their intended purpose as post-ascension progression boosters rather than early game shortcuts
+
+## [0.49.5] - 2025-07-14
+
+### Added
+- **Completed Neurotrails Queue System**:
+  - Implemented full queue management functions in neurotrailsStore.ts (`addNodeToQueue`, `removeNodeFromQueue`, `reorderNodeQueue`, `clearNodeQueue`)
+  - Added auto-start functionality that automatically begins next queued node when current journey completes
+  - Integrated queue processing into the main game tick function for seamless automation
+  - Created comprehensive NodeQueueModal.vue component for managing queue with drag-and-drop reordering
+  - Added queue button to NeurotrailsPage.vue header with badge showing queue count
+  - Implemented "Add to Queue" / "Remove from Queue" buttons on individual node cards
+  - Added "In Queue" status indicators on node cards for visual feedback
+  - Enhanced save/load system to persist queue state across game sessions
+  - Added configurable settings for auto-start and notification preferences
+  - Implemented toast notifications for queue actions (add/remove nodes)
+  - Added queue management similar to existing quest queue system for consistency
+  - Integrated queue controls with existing UI patterns and design language
+
+### Enhanced
+- **Neurotrails User Experience**:
+  - Reduced micromanagement by allowing players to queue multiple nodes for automatic navigation
+  - Added visual queue indicators throughout the Neurotrails interface
+  - Improved workflow with seamless transitions between queued nodes
+  - Enhanced automation options with configurable auto-start behavior
+  - Added persistent queue state that survives game sessions and page refreshes
+
+## [0.49.4] - 2025-07-14
+
+### Added
+- **Enhanced Prestige Upgrade Cost Display**:
+  - Added total cost display for "Max Buy" functionality across all prestige upgrade components
+  - Implemented new `calculateMaxPurchaseTotalCost` function in prestige store to calculate total EP cost for maximum purchasable levels
+  - Enhanced PrestigeUpgradeTree.vue to show both level count and total cost in "Buy Max" button (e.g., "Buy Max (5) - 1.2K EP")
+  - Updated PrestigeUpgradeSidepanel.vue to display total cost alongside level count in "Max" button
+  - Added "Max Buy" information section to PrestigeUpgradeTooltip.vue showing purchasable levels and total cost
+  - Improved user decision-making by providing complete cost information before purchasing multiple levels
+- **Aphid Farm Honeydew Per Minute Calculator**:
+  - Added built-in honeydew per minute calculator to reduce micromanagement
+  - Implemented `calculateHoneydewPerMinute` function in aphidFarmStore to calculate average honeydew gain over 60 seconds
+  - Added honeydew per minute display in AphidFarmPage.vue stats section
+  - Enhanced field management by showing real-time production rate information
+  - Improved decision-making for field upgrades and aphid type selection
+- **Hatchery Automation System**:
+  - Added two new automation upgrades in automationStore.ts for Alate Hatchery generator
+  - Implemented `alateHatcheryAutoPurchase` upgrade (base cost 1.6e1001, growth 1.65, max 25 levels, unlocked at tier 8)
+  - Added `alateHatcheryAutoUpgrade` upgrade (base cost 5.6e1001, growth 2.0, max 1 level, unlocked at tier 8)
+  - Enhanced automation dependency logic requiring Antopolis before Alate Hatchery
+  - Updated cost calculation to include alateHatchery in advanced generators section
+- **Neurotrails Queue System Foundation**:
+  - Started implementing queue system for Neurotrails similar to quest queuing
+  - Added `nodeQueue` ref for storing node IDs in queue
+  - Added `autoStartNextNode` ref for auto-starting next node when journey completes
+  - Added `isQueueModalOpen` ref for queue modal visibility
+  - Added `showNodeNotifications` ref for showing notifications
+
+### Fixed
+- **Auto-Upgrade System Issue**:
+  - Fixed issue where auto-upgrade didn't start until you buy a generator manually
+  - Modified worker progress tracking to allow specialization points to be earned immediately
+  - Auto-upgrade system now works as soon as it's purchased and enabled, without requiring manual generator purchases first
+- **Mega Ant Auto-Feed System**:
+  - Made auto-feed functionality always active when upgrade is purchased, removing unnecessary toggle options
+  - Removed `autoFeedEnabled` and `autoFeedPheromoneEnabled` ref variables from megaAntStore.ts
+  - Removed `toggleAutoFeed()` and `toggleAutoFeedPheromone()` functions for simplified UX
+  - Updated auto-feed functions to only check if upgrade is unlocked (removed enabled flag checks)
+  - Fixed DigestiveSystems.vue to show "Always Active" status instead of toggle switches
+  - Cleaned up state management by removing toggle flags from save/load functions
+- **Aphid Farm UI Overflow Issues**:
+  - Fixed aphid farm UI overflowing borders with last options not visible
+  - Changed from fixed height `h-72` to `min-h-80 h-auto` for better content fitting
+  - Added `max-h-40` to scrollable areas with improved action button visibility
+  - Enhanced action button visibility with `bg-black/80` background
+  - Reorganized grid layout from 3 to 2/3 columns for better space utilization
+  - Improved text sizing from `text-2xs` to `text-xs` for better readability
+
+## [0.49.3] - 2025-07-14
+
+### Fixed
+- **Honeydew Offline Calculation Issues**:
+  - Fixed honeydew not being generated correctly during offline time calculations
+  - Added proper honeydew rewards from adventure mode bug kills during offline periods
+  - Implemented optimized aphid farm calculation for offline honeydew production
+  - Fixed duplicate aphid farm processing during batch calculations that was causing incorrect resultsnnnnnnnnn
+  - Enhanced offline calculation to properly include honeydew from auto-farming fields
+  - Added honeydew generation to adventure mode's optimized offline combat calculations
+  - Improved multiplier application for honeydew rewards during offline periods
+
+## [0.49.2] - 2025-07-06
+
+### Added
+- **Trip-based ETA Display in Evolution Status**:
+  - Added new "Trip-based ETA" calculation that shows estimated time to complete cycle requirements based purely on trip duration
+  - ETA calculation ignores food progress completion and focuses only on foraging trip mechanics
+  - Mobile-friendly implementation with tappable info icon instead of hover tooltips
+  - Interactive modal explanation showing detailed calculation breakdown and current trip duration
+  - Smart time formatting (seconds, minutes, hours, days) for easy readability
+  - Amber-colored stat tile with clock icon for clear visual distinction
+  - Keyboard accessibility support (Escape key to close modal)
+  - Responsive design that works across all screen sizes
+
+## [0.49.1] - 2025-07-06
+
+### Fixed
+- **Critical Cloud Save Desync Issue**:
+  - Fixed cloud save timestamp comparison logic to always prioritize newer saves over older ones
+  - Enhanced progress detection system to check multiple game indicators (food, generators, prestige points, etc.) instead of just totalTicks
+  - Improved conflict detection to trigger when either save has progress, preventing silent overwrites of newer saves
+  - Added comprehensive logging with visual indicators for better debugging of save loading and timestamp comparison
+  - Fixed scenario where players switching devices could use outdated local saves instead of newer cloud saves
+  - Enhanced error handling for cloud save loading failures with better fallback behavior
+  - Prevented invalid offline progress calculations that could grant excessive rewards from outdated save timestamps
+
+## [0.49.0] - 2025-07-06
+
+### Added
+- **Major Performance Improvements for Offline Calculation**:
+  - Implemented optimized batch processing system that automatically triggers for large tick counts (>10 ticks)
+  - Added intelligent caching system that pre-calculates production rates, multipliers, and reproduction chances
+  - Introduced deterministic batch reproduction calculations using expected values instead of random rolls
+  - Enhanced offline progress calculation with hybrid processing strategy for different time durations
+  - Increased default batch size from 100 to 500 ticks per batch for better performance
+  - Added performance metrics logging to track calculation speed and efficiency
+
+### Fixed
+- **Critical Bug Fix**: Royal Evolution upgrade multiplier calculation
+  - Fixed Royal Evolution upgrade returning raw percentage values (0.0005) instead of proper multipliers (1.0005)
+  - Corrected Level 1 effect from 99.95% reduction to proper +0.05% boost
+  - Corrected Level 5 effect from 99.75% reduction to proper +0.25% boost
+  - Updated effect calculation to use additive multiplier format: `1 + (level * 0.0005)`
+  - Fixed formatEffect display to show correct percentage values
+
+### Changed
+- **Offline Calculation Optimizations**:
+  - Replaced individual tick processing with batch calculations for better performance
+  - Implemented smart tick processing that uses precise calculation for short durations (<1 hour) and hybrid approach for longer periods
+  - Enhanced generator tick processing with cached multiplier calculations
+  - Optimized reproduction processing to use expected probability calculations instead of random number generation
+  - Improved memory efficiency by reducing repeated store access and calculation overhead
+
+### Technical Improvements
+- Added comprehensive logging for offline calculation performance monitoring
+- Implemented safeguards to prevent calculation errors during large offline sessions
+- Enhanced batch processing reliability with proper error handling
+- Optimized store access patterns to reduce computational overhead during offline progress
+
+## [0.48.6] - 2025-05-04
+
+### Changed
+- Modified "Buy Max Upgrades" buttons to only appear after at least one ascension:
+  - Both Evolution Status Section and Pheromone Shop "Max All" buttons now require having ascended at least once
+  - Added dependency on megaAntStore to check ascension count in both components
+  - Improved progression by making these features available only to more experienced players
+  - Better balance for early game progression by preventing immediate access to mass purchasing
+  - Ensures players learn basic upgrade mechanics before accessing advanced purchasing options
+
+## [0.48.5] - 2025-05-04
+
+### Fixed
+- Fixed manual purchase synergy upgrades not showing correctly in the EP Multiplier Breakdown Modal:
+  - Updated the breakdown to properly display synergy upgrades as multiplicative (×) instead of additive (+)
+  - Improved the EP multiplier breakdown to use the `additive` property to determine display type
+  - Fixed display inconsistencies in the multiplier breakdown between additive and multiplicative bonuses
+  - Enhanced visual clarity to better distinguish between different multiplier types
+  - Fixed debug function to correctly report multiplier types
+
+## [0.48.4] - 2025-05-01
+
+### Changed
+- Improved automation system to prioritize higher tier generators:
+  - Auto-purchase now processes generators from highest to lowest tier for optimal resource allocation
+  - Modified automation to work even when no generators of a type have been purchased yet
+  - Removed requirement to have at least one generator before auto-purchase becomes active
+  - Increased auto-upgrade frequency from 60 to 10 ticks for more responsive upgrading
+  - Updated UI to show all unlocked automation upgrades regardless of generator ownership
+- Enhanced user experience with more consistent automation behavior:
+  - All available automation upgrades now display immediately when unlocked
+  - Automation starts working as soon as it's purchased and enabled
+
+## [0.48.3] - 2025-04-26
+
+### Added
+- New dedicated AutomationPage for managing colony automation:
+  - Added new page for automation features that were previously in the Evolution section
+  - Created NextUnlockableAutomation component to show locked automation upgrades
+  - Implemented a tab-based interface for different types of automation upgrades
+  - Built visual indicators showing which automations are available vs. locked
+  - Added detailed descriptions and visual indicators for each automation type
+
+### Changed
+- Moved automation features from Evolution section to their own dedicated page
+- Updated automationStore with new computed properties to filter upgrades based on generator ownership
+- Improved navigation system to include the new Automation section
+
+### Fixed
+- Fixed issue where automation upgrades were being displayed for generators that hadn't been purchased
+- Updated automationStore to skip processing automation for generators with zero count
+
+## [0.48.2] - 2025-04-24
+
+### Fixed
+- Fixed "Skip Hibernation" functionality in the Offline Progress Modal:
+  - Updated the skip button to properly save the current time before reloading
+  - Fixed an issue where the last save time was not being used correctly
+  - Improved save system to ensure there's no time gap when reloading after skip
+  - Enhanced logging during the hibernation skip process
+
+## [0.48.1] - 2025-04-24
+
+### Added
+- Added feed-by-percentage functionality to the Mega Ant component:
+  - Implemented dropdown selectors for both food and pheromone feeding systems
+  - Added options to feed 1%, 5%, 10%, 25%, 50%, or 100% of available resources
+  - Enhanced UI with inline resource amount previews
+  - Improved feeding calculations to respect logarithmic stomach mechanics
+  - Displays actual percentage consumed in the feedback message
+
+### Fixed
+- Fixed status visualization in UpgradeTree component:
+  - Improved the locked upgrade display with clearer visual indicators
+  - Enhanced connection lines to better represent prerequisites and upgrade paths
+  - Fixed color-coding inconsistencies for locked vs. available upgrades
+  - Added better contrast for locked upgrades in dark mode
+
+## [0.48.0] - 2025-04-24
+
+### Changed
+- Improved the Item Modal honeydew leveling interface:
+  - Replaced fixed XP amount buttons with percentage-based honeydew spending options (1%, 5%, 10%, 25%, 50%)
+  - Made leveling more scalable across all progression stages
+  - Simplified the UI by removing unnecessary tooltips and improving layout spacing
+  - Added clearer cost display for better player decision-making
+  - Maintained "Level Up" and "Max XP" smart buttons for precise control
+
+## [0.47.2] - 2025-04-24
+
+### Fixed
+- Fixed issue in Adventure mode where having both Auto Advance and Auto Quest Advance enabled would make the player stuck on the training bug if they have a non-battle related quest active
+- Added logic to allow Auto Advance to work properly when Auto Quest Advance is enabled but there's no valid quest target
+
+## [0.47.1] - 2025-04-24
+
+### Fixed
+- Fixed Bubbleback Burst upgrade to properly apply to all fields for 30 seconds
+- Fixed Fungal Symbiosis upgrade to affect all aphids (not just fungal aphids)
+- Fixed a recursive reactivity issue in the aphid farm store
+- Added proper UI indicators for both aphid farm field-wide effects
+
+## [0.47.0] - 2025-04-24
+
+### Added
+- Added honeydewBoost and pheromoneBoost modifiers to equipment items
+- Equipment can now provide percentage boosts to honeydew and pheromone production
+
+## [0.46.2] - 2025-04-24
+
+### Added
+- Enhanced Neurotrails system with improved visual indicators:
+  - Added orange highlight color for nodes with incomplete tasks that are ready to be completed
+  - Implemented distinct visual cues in both the network map and node list to help players identify actionable nodes
+  - Added "Tasks Ready" badge to nodes in the list view for better visibility
+  - Enhanced tooltips to clearly indicate when a node has tasks that can be completed
+  - Improved node icons to also reflect the task-ready state with consistent orange coloring
+
+## [0.46.1] - 2025-04-24
+
+### Added
+- Enhanced Aphid Farm with new features:
+  - Added "Pause All" functionality for easier field management
+  - Improved field UI with better buttons and controls
+  - Made field content scrollable for better navigation on all devices
+  - Enhanced overall usability with clearer interactive elements
+
+### Changed
+- Integrated daily rewards with save export functionality:
+  - Daily rewards now automatically create a save backup when claimed
+  - Added option to save backup as file or copy to clipboard
+  - Improved user feedback with clearer success messages
+  - Enhanced reward claim flow with better visual indicators
+
+### Fixed
+- Fixed critical issues with generator preset auto-upgrade functionality:
+  - Completely redesigned the auto-upgrade system to strictly follow the user-defined preset order
+  - Fixed infinite recursion error that occurred when processing maxed-out upgrades in presets
+  - Improved preset handling to update the last purchased index when manually purchasing upgrades
+  - Enhanced the auto-upgrade UI tooltip to clarify that presets follow the exact order defined
+  - Implemented a more robust checking system that prevents the "too much recursion" error
+  - Added safeguards to prevent automatic reordering of the preset sequence during processing
+
+### Removed
+- Removed ant morale system based on player feedback and my own thoughts on it
+
+## [0.45.4] - 2025-04-22
+
+### Added
+- Added new StatsPage to provide comprehensive game statistics
+- Enhanced Mega Ant components for better user experience:
+  - Improved AscensionConfirmationModal with clearer ascension benefits
+  - Enhanced AscensionTreeView for better visualization of upgrades
+  - Optimized DesktopUpgradeLayout and MobileUpgradeTabView for responsive design
+- Modified router.ts to include the new StatsPage route
+
+### Changed
+- Updated prestige production upgrades for better balance
+- Improved multiplier calculations in multiplierStore.ts
+- Enhanced megaAntStore.ts with optimized ascension mechanics
+- Refined prestigeStore.ts for more consistent upgrade handling
+- Updated MainLayout.vue to accommodate the new statistics page
+
+## [0.45.3] - 2025-04-21
+
+### Added
+- Added dynamic maxLevel scaling system for prestige upgrades based on ascension count:
+  - Upgrades with maxLevel now automatically increase their cap based on your ascension progress
+  - Different scaling rates for different ranges of maxLevels (small, medium, large)
+  - Small maxLevels (2-5) scale at 10% per ascension, capped at doubling
+  - Medium maxLevels (6-10) scale at 15% per ascension, capped at doubling
+  - Large maxLevels (>10) scale at 20% per ascension, capped at doubling
+  - Upgrades with maxLevel of 1 remain unchanged to maintain game balance
+  - Automatic recalculation after loading a save, prestiging, ascending, or viewing the Upgrades page
+
+## [0.45.2] - 2025-04-21
+
+### Fixed
+- Fixed issue where Neurotrails bonuses were being reset during ascension:
+  - Modified the ascension process to preserve Neurotrails state during ascension
+  - Ensured all node contributions and active boosts persist after ascension
+  - Maintained completed tasks and visited nodes through the ascension process
+
+## [0.45.1] - 2025-04-21
+
+### Added
+- Added pause/resume functionality for active quests.
+- Persisted quest pause state in save data.
+
+## [0.45.0] - 2025-04-21
+
+### Fixed
+- Fixed critical issues in the Neurotrails system:
+  - Fixed a bug where node bonuses were being lost when leaving a node
+  - Fixed issue with multi-node travel stopping at intermediary nodes
+  - Ensured all completed task bonuses are properly persisted and calculated
+  - Improved path tracking during long journeys through multiple nodes
+  - Enhanced rebuildNodeContributions functionality to maintain all task bonuses
+
+## [0.44.0] - 2025-04-21
+
+### Added
+- Implemented Google login with cloud saving functionality:
+  - Securely save your game progress to the cloud
+  - Seamlessly sync your colony between multiple devices
+  - Never lose your progress with automatic cloud backups
+  - Easy sign-in using your Google account
+- Introduced the Neurotrails system, a powerful new game mechanic:
+  - Unlock neural pathways that boost various aspects of your colony
+  - Progress through an interconnected network of upgrades
+  - Earn specialized boosts targeting specific generator types
+  - Gain powerful global multipliers as you expand your network
+
+### Changed
+- Enhanced the Ascension Tree View with improved usability features:
+  - Added zoom functionality to better navigate complex upgrade paths
+  - Implemented zoom in/out controls with percentage indicators
+  - Added responsive modal dialog for detailed upgrade information
+  - Improved mobile experience with optimized controls
+
+### Fixed
+- Resolved several critical multiplier calculation issues:
+  - Fixed incorrect application of additive and multiplicative bonuses
+  - Corrected generator-specific multiplier calculations
+  - Ensured proper application of global production modifiers
+  - Enhanced multiplier breakdown display for better clarity
+- Fixed various minor bugs and performance issues throughout the game
+
 ## [0.43.1] - 2025-04-17
 
 ### Added
@@ -693,9 +1380,6 @@
   - Implemented yield calculation that shows the final reward including all bonuses
   - Integrated Golden Aura effect from adjacent fields into the expected yield
   - Improved user experience by showing potential rewards during growth phase
-
-### Fixed
-- Improved Aphid Farm field layout consistency with height styling
 
 ## [0.13.2] - 2025-04-02
 
